@@ -1,0 +1,61 @@
+
+MODULE main
+VAR
+    signal: { hold, reset };
+    req: { none, get, post };
+    state: { ready, accept, get, post, read, update, respond, log, reset };
+
+ASSIGN
+    init(signal) := hold;
+    next(signal):= case 
+        (state = ready): hold;
+        TRUE: {hold, reset} ;
+    esac;
+
+    init(req):= none;
+    next(req):= case
+        (state = accept) : {get, post};
+        TRUE: req;
+    esac;
+
+    init(state):= ready;
+    next(state):= case
+        (state = ready) : accept;
+        
+        (state = accept & req = get & signal != reset)  : get;
+        (state = accept & req = post & signal != reset) : post;
+        
+        (state = get & signal != reset)  : read;
+        (state = post & signal != reset) : update;
+        ((state = read | state = update) & signal != reset) : respond;
+        (state = respond & signal != reset) : log;
+        (state = log & signal != reset)     : ready;
+
+        TRUE: { state, reset };
+    esac;
+
+CTLSPEC (state = ready) -> AF EF (state = reset);
+CTLSPEC AF EF (state = reset);
+CTLSPEC EF (state = reset);
+CTLSPEC AG EF (state = reset);
+-- CTLSPEC AF (state = reset);
+
+CTLSPEC AG ((state = get | state = post) -> EF (state = respond));
+CTLSPEC AG ((state = get | state = post) -> EF (state = reset));
+
+LTLSPEC F !G (state = reset);
+LTLSPEC F !(state = reset);
+
+LTLSPEC G ((state = get | state = post) -> E (state = respond));
+
+--LTLSPEC F (state = reset);
+--LTLSPEC F G(state = reset);
+--LTLSPEC G F (state = reset);
+
+--
+-- this requires us to revisit the model and fix it!
+--
+-- LTLSPEC G F (state != reset);
+
+
+--LTLSPEC F G (state != reset)
