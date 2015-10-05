@@ -1,0 +1,58 @@
+
+MODULE main
+VAR
+    req: { none, get, post };
+    state: { ready, accept, read, update, respond, log };
+
+ASSIGN
+    init(req):= none;
+    next(req):= case
+        (state = ready) : {none, get, post};
+        TRUE : req;
+    esac;
+
+    init(state):= ready;
+    next(state):= case
+        (state = ready) : accept;
+        (state = accept & req = post)   : update;
+        (state = accept & req = get)    : read;
+        (state = read | state = update) : respond;
+        (state = respond) : log;
+        (state = log)     : ready;
+
+        TRUE: state;
+    esac;
+
+
+-- LTL for saying and specifying interesting properties of the system.
+
+LTLSPEC G (req = get | req = post | req = none);
+LTLSPEC G (state = read -> req = get);
+LTLSPEC G (state = update -> req = post);
+
+LTLSPEC G F (state = ready);     -- ready infinitely often
+LTLSPEC G F ((state = accept));  -- accept infinitely often
+LTLSPEC G F (state = respond);
+LTLSPEC G F (state = accept | state = respond);
+
+-- The system DOES NOT infinitely often visit the 'read' state.
+LTLSPEC G F !(state = read)
+-- ... nor does th system infinitely often visit 'update'.
+LTLSPEC G F !(state = update)
+-- However, the system DOES reach, infinitely often, 'read' OR 'update' states.
+LTLSPEC G F (state = read | state = update);
+
+-- You may reach 'accept' only by being 'ready'.
+LTLSPEC F(X state = accept) -> (state = ready); 
+
+-- every request will be responded
+LTLSPEC G F ((req = get | req = post) -> F (state = respond));
+LTLSPEC G ((state = respond) -> (req = get | req = post));
+
+
+-- This is required to ensure that we DO NOT end up in an unfair cycle of 
+--   no requests being generated, that is, (req = none). This is important
+--   for the LTL expressions, in the above, that state infinite visitation 
+--   of 'ready', 'accept', 'respond' and the (read | update) states.
+--     
+JUSTICE (req = get & req = post);
