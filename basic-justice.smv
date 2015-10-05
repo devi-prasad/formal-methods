@@ -1,0 +1,39 @@
+
+MODULE main
+VAR
+    req: { none, get, post };
+    state: { ready, accept, read, update, respond, log };
+
+ASSIGN
+    init(req):= none;
+    next(req):= case
+        (state = ready) : {none};
+        (state = accept & req = none) : {get, post};
+        (state = read | state = update | state = respond | state = log) : req;
+        TRUE : req;
+    esac;
+
+    init(state):= ready;
+    next(state):= case
+        (state = ready) : accept;
+        (state = accept & req = post)   : update;
+        (state = accept & req = get)    : read;
+        (state = read | state = update) : respond;
+        (state = respond) : log;
+        (state = log)     : ready;
+
+        TRUE: state;
+    esac;
+
+
+-- LTL for saying and specifying interesting properties of the system.
+
+JUSTICE (req = post);
+JUSTICE (req = get);
+LTLSPEC G F ((req = post));
+LTLSPEC G F ((req = get));
+
+-- YOU MAY CHOOSE TO IGNORE THE FOLLOWING! :-))
+-- quirk of SMV. Required to appease the theorem prover. 
+-- equates the behaviors of BDD-based SMV and the theorem prover.
+JUSTICE TRUE; 
