@@ -5,12 +5,6 @@ VAR
     state: { ready, accept, read, update, respond, log };
 
 ASSIGN
-    init(req):= none;
-    next(req):= case
-        (state = ready) : {none, get, post};
-        TRUE : req;
-    esac;
-
     init(state):= ready;
     next(state):= case
         (state = ready) : accept;
