@@ -1,0 +1,45 @@
+
+MODULE main
+VAR
+    signal: { hold, reset };
+    req: { none, get, post };
+    state: { ready, accept, read, update, respond, log, reset };
+
+ASSIGN
+    init(signal) := hold;
+    next(signal):= case 
+        (state = ready): hold;
+        (state = reset): hold;
+        TRUE: { hold, reset } ;
+    esac;
+
+    init(req):= none;
+    next(req):= case
+        (state = accept) : {post, get};
+        (state = reset) : {none};
+        TRUE: req;
+    esac;
+
+    init(state):= ready;
+    next(state):= case
+        (state = ready) : accept;
+
+        (state = accept & req = post & signal != reset) : update;
+        (state = accept & req = get & signal != reset)  : read;
+        ((state = read | state = update) & signal != reset) : respond;
+        (state = respond & signal != reset) : log;
+        (state = log & signal != reset)     : ready;
+
+        (state = reset) : ready;
+        (signal = reset): reset;
+
+        TRUE: state;
+    esac;
+
+
+
+
+
+
+
+

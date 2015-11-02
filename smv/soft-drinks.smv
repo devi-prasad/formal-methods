@@ -1,0 +1,57 @@
+MODULE main
+VAR
+    drink:  { diet_coke, coke_zero, pepsi};
+    ask:  { nothing, money };
+    state:  { ready, accept_money, drink_delivered };
+    supply: { available, empty };
+
+ASSIGN
+    init(supply) := available;
+    next(supply) := case
+        (state = drink_delivered) : { available, empty };
+        (state = ready & supply = empty) : { available, empty };
+        TRUE: supply;
+    esac;
+
+    init(ask) := nothing;
+    next(ask) := case
+        (ask = nothing & state = accept_money) : money;
+        (ask = money & state = drink_delivered) : nothing;
+        TRUE: ask;
+    esac;
+
+    init(state) := ready;
+    next(state) := case
+        (state = ready & drink = diet_coke & supply = available & ask = nothing): accept_money;
+        (state = ready & drink = coke_zero & supply = available & ask = nothing): accept_money;
+        (state = ready & drink = pepsi & supply = available & ask = nothing)    : accept_money;
+        (state = accept_money & ask = money) : drink_delivered;
+        (state = drink_delivered) : ready;
+        TRUE : state;
+    esac;
+
+    init(drink) := { diet_coke, coke_zero, pepsi};
+    next(drink) := { diet_coke, coke_zero, pepsi };
+
+--FAIRNESS (supply = empty) -> supply=available
+COMPASSION ((supply = empty & state = ready), (supply = available))
+
+SPEC AG ((supply = available & state = drink_delivered) -> EF (supply = empty))
+CTLSPEC AG ( A[supply = available U state = drink_delivered] -> EF supply = empty )
+SPEC AG ((supply = empty) -> EF (supply = available))
+SPEC AG ((supply = empty) -> EX AF (supply = available))
+SPEC AG ((supply = empty) -> AX EF (supply = empty))
+SPEC AG ((supply = empty) -> EX AF (supply = empty))
+SPEC AG(state = accept_money -> AX AF state = drink_delivered)
+SPEC AG ((supply = available) -> EX EF (supply = empty))
+SPEC AG ((supply = available) -> AX EF (supply = empty))
+
+-- specifications that DO NOT hold
+SPEC AG ((supply = available) -> AX AF (supply = empty))
+SPEC AG ((supply = empty) -> AF (supply = available))
+
+
+--CTLSPEC AG (AF(supply = empty) -> EF (state = drink_delivered))
+--CTLSPEC AG (AF(supply = empty) -> AF (state != drink_delivered))
+
+
