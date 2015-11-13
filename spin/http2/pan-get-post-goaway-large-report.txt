@@ -1,0 +1,1290 @@
+
+
+devi@monad:~/projects/sois/formal-methods/spin/examples$ spin -search -biterate -m500000  -l ococ.pml 
+
+(Spin Version 6.4.3 -- 16 December 2014)
+	+ Partial Order Reduction
+	+ Process Scheduling Permutation
+
+Bit statespace search for:
+	never claim         	+ (:np_:)
+	assertion violations	+ (if within scope of claim)
+	non-progress cycles 	+ (fairness disabled)
+	invalid end states	- (disabled by never claim)
+
+State-vector 444 byte, depth reached 2769, errors: 0
+    70893 states, stored (106956 visited)
+   124317 states, matched
+   231273 transitions (= visited+matched)
+    17706 atomic steps
+
+hash factor: 2.45095 (best if > 100.)
+
+bits set per state: 1 (-k1)
+
+Stats on memory usage (in Megabytes):
+   31.911	equivalent memory usage for states (stored*(State-vector + overhead))
+    0.031	memory used for hash array (-w18)
+    3.815	memory used for bit stack
+   30.518	memory used for DFS stack (-m500000)
+   35.211	total actual memory usage
+
+
+unreached in proctype Client
+	ococ.pml:90, state 29, "assert(0)"
+	ococ.pml:72, state 68, "sid = 0"
+	ococ.pml:90, state 84, "assert(0)"
+	ococ.pml:90, state 103, "assert(0)"
+	ococ.pml:202, state 118, "assert(0)"
+	ococ.pml:84, state 137, "streams[indx].server_state = 0"
+	ococ.pml:85, state 138, "streams[indx].final_frame = 0"
+	ococ.pml:86, state 139, "streams[indx].last_sent_frame = 0"
+	ococ.pml:87, state 140, "streams[indx].last_rcvd_frame = 0"
+	ococ.pml:88, state 141, "streams[indx].request = 5"
+	ococ.pml:90, state 144, "assert(0)"
+	ococ.pml:81, state 150, "(((indx>=0)&&(indx<5)))"
+	ococ.pml:81, state 150, "else"
+	ococ.pml:90, state 179, "assert(0)"
+	ococ.pml:84, state 209, "streams[i].server_state = 0"
+	ococ.pml:85, state 210, "streams[i].final_frame = 0"
+	ococ.pml:86, state 211, "streams[i].last_sent_frame = 0"
+	ococ.pml:87, state 212, "streams[i].last_rcvd_frame = 0"
+	ococ.pml:88, state 213, "streams[i].request = 5"
+	ococ.pml:90, state 216, "assert(0)"
+	ococ.pml:81, state 222, "(((i>=0)&&(i<5)))"
+	ococ.pml:81, state 222, "else"
+	ococ.pml:244, state 234, "i = (i+1)"
+	(21 of 257 states)
+unreached in proctype Server
+	ococ.pml:90, state 74, "assert(0)"
+	ococ.pml:90, state 120, "assert(0)"
+	(2 of 140 states)
+unreached in proctype main
+	(0 of 3 states)
+
+pan: elapsed time 0.22 seconds
+pan: rate 486163.64 states/second
+
+(Spin Version 6.4.3 -- 16 December 2014)
+	+ Partial Order Reduction
+	+ Process Scheduling Permutation
+	+ Reverse Transition Ordering
+
+Bit statespace search for:
+	never claim         	+ (:np_:)
+	assertion violations	+ (if within scope of claim)
+	non-progress cycles 	+ (fairness disabled)
+	invalid end states	- (disabled by never claim)
+
+State-vector 444 byte, depth reached 29283, errors: 0
+   176093 states, stored (258623 visited)
+   287594 states, matched
+   546217 transitions (= visited+matched)
+    56470 atomic steps
+
+hash factor: 2.02723 (best if > 100.)
+
+bits set per state: 2 (-k2)
+
+Stats on memory usage (in Megabytes):
+   79.265	equivalent memory usage for states (stored*(State-vector + overhead))
+    0.062	memory used for hash array (-w19)
+    3.815	memory used for bit stack
+   30.518	memory used for DFS stack (-m500000)
+    6.482	other (proc and chan stacks)
+   41.071	total actual memory usage
+
+
+unreached in proctype Client
+	ococ.pml:162, state 8, "assert((!(goaway_rcvd)||(sid<=goaway_stream_id)))"
+	ococ.pml:163, state 9, "assert(((indx>=0)&&(indx<5)))"
+	ococ.pml:165, state 11, "assert((streams[indx].id==sid))"
+	ococ.pml:166, state 12, "assert(((streams[indx].last_rcvd_frame+1)==frame))"
+	ococ.pml:169, state 13, "assert((((streams[indx].client_state==1)||(streams[indx].client_state==3))||(streams[indx].client_state==4)))"
+	ococ.pml:171, state 14, "streams[indx].last_rcvd_frame = frame"
+	ococ.pml:84, state 22, "streams[indx].server_state = 0"
+	ococ.pml:85, state 23, "streams[indx].final_frame = 0"
+	ococ.pml:86, state 24, "streams[indx].last_sent_frame = 0"
+	ococ.pml:87, state 25, "streams[indx].last_rcvd_frame = 0"
+	ococ.pml:88, state 26, "streams[indx].request = 5"
+	ococ.pml:90, state 29, "assert(0)"
+	ococ.pml:81, state 35, "(((indx>=0)&&(indx<5)))"
+	ococ.pml:81, state 35, "else"
+	ococ.pml:121, state 37, "(1)"
+	ococ.pml:117, state 38, "((streams[indx].server_state==6))"
+	ococ.pml:117, state 38, "else"
+	ococ.pml:115, state 40, "streams[indx].client_state = 6"
+	ococ.pml:113, state 42, "assert((streams[indx].id==sid))"
+	ococ.pml:161, state 47, "assert((sid>0))"
+	ococ.pml:72, state 68, "sid = 0"
+	ococ.pml:90, state 84, "assert(0)"
+	ococ.pml:90, state 103, "assert(0)"
+	ococ.pml:202, state 118, "assert(0)"
+	ococ.pml:84, state 137, "streams[indx].server_state = 0"
+	ococ.pml:85, state 138, "streams[indx].final_frame = 0"
+	ococ.pml:86, state 139, "streams[indx].last_sent_frame = 0"
+	ococ.pml:87, state 140, "streams[indx].last_rcvd_frame = 0"
+	ococ.pml:88, state 141, "streams[indx].request = 5"
+	ococ.pml:90, state 144, "assert(0)"
+	ococ.pml:81, state 150, "(((indx>=0)&&(indx<5)))"
+	ococ.pml:81, state 150, "else"
+	ococ.pml:90, state 179, "assert(0)"
+	ococ.pml:84, state 209, "streams[i].server_state = 0"
+	ococ.pml:85, state 210, "streams[i].final_frame = 0"
+	ococ.pml:86, state 211, "streams[i].last_sent_frame = 0"
+	ococ.pml:87, state 212, "streams[i].last_rcvd_frame = 0"
+	ococ.pml:88, state 213, "streams[i].request = 5"
+	ococ.pml:90, state 216, "assert(0)"
+	ococ.pml:81, state 222, "(((i>=0)&&(i<5)))"
+	ococ.pml:81, state 222, "else"
+	(37 of 257 states)
+unreached in proctype Server
+	ococ.pml:269, state 7, "goaway_sent = 1"
+	ococ.pml:268, state 8, "server!GOAWAY,0,15,0,0"
+	ococ.pml:294, state 19, "assert((streams[indx].server_state==0))"
+	ococ.pml:295, state 20, "streams[indx].last_sent_frame = 0"
+	ococ.pml:296, state 21, "streams[indx].final_frame = data_frames"
+	ococ.pml:297, state 22, "streams[indx].server_state = 4"
+	ococ.pml:298, state 23, "server_tasks!indx"
+	ococ.pml:128, state 24, "data_frames = 5"
+	ococ.pml:90, state 74, "assert(0)"
+	ococ.pml:340, state 95, "assert((streams[indx].server_state==4))"
+	ococ.pml:341, state 96, "frame = (streams[indx].last_sent_frame+1)"
+	ococ.pml:342, state 97, "sid = streams[indx].id"
+	ococ.pml:343, state 98, "data_frames = streams[indx].final_frame"
+	ococ.pml:344, state 99, "streams[indx].last_sent_frame = frame"
+	ococ.pml:345, state 100, "server!DATA,indx,sid,frame,data_frames"
+	ococ.pml:98, state 107, "assert((streams[indx].id==sid))"
+	ococ.pml:84, state 113, "streams[indx].server_state = 0"
+	ococ.pml:85, state 114, "streams[indx].final_frame = 0"
+	ococ.pml:86, state 115, "streams[indx].last_sent_frame = 0"
+	ococ.pml:87, state 116, "streams[indx].last_rcvd_frame = 0"
+	ococ.pml:88, state 117, "streams[indx].request = 5"
+	ococ.pml:90, state 120, "assert(0)"
+	ococ.pml:81, state 126, "(((indx>=0)&&(indx<5)))"
+	ococ.pml:81, state 126, "else"
+	ococ.pml:106, state 128, "(1)"
+	ococ.pml:102, state 129, "((streams[indx].client_state==6))"
+	ococ.pml:102, state 129, "else"
+	ococ.pml:100, state 131, "streams[indx].server_state = 6"
+	ococ.pml:97, state 132, "assert(((indx>=0)&&(indx<5)))"
+	ococ.pml:351, state 133, "streams[indx].server_state = 3"
+	ococ.pml:347, state 134, "((frame<data_frames))"
+	ococ.pml:347, state 134, "else"
+	ococ.pml:339, state 136, "assert((streams[indx].request==GET))"
+	(30 of 140 states)
+unreached in proctype main
+	(0 of 3 states)
+
+pan: elapsed time 0.53 seconds
+pan: rate 487967.92 states/second
+
+(Spin Version 6.4.3 -- 16 December 2014)
+	+ Partial Order Reduction
+	+ Process Scheduling Permutation
+
+Bit statespace search for:
+	never claim         	+ (:np_:)
+	assertion violations	+ (if within scope of claim)
+	non-progress cycles 	+ (fairness disabled)
+	invalid end states	- (disabled by never claim)
+
+State-vector 444 byte, depth reached 5273, errors: 0
+   261250 states, stored (384099 visited)
+   451964 states, matched
+   836063 transitions (= visited+matched)
+    58739 atomic steps
+
+hash factor: 2.72996 (best if > 100.)
+
+bits set per state: 3 (-k3)
+
+Stats on memory usage (in Megabytes):
+  117.598	equivalent memory usage for states (stored*(State-vector + overhead))
+    0.125	memory used for hash array (-w20)
+    3.815	memory used for bit stack
+   30.518	memory used for DFS stack (-m500000)
+    1.222	other (proc and chan stacks)
+   35.825	total actual memory usage
+
+
+unreached in proctype Client
+	ococ.pml:90, state 29, "assert(0)"
+	ococ.pml:72, state 68, "sid = 0"
+	ococ.pml:90, state 84, "assert(0)"
+	ococ.pml:90, state 103, "assert(0)"
+	ococ.pml:202, state 118, "assert(0)"
+	ococ.pml:84, state 137, "streams[indx].server_state = 0"
+	ococ.pml:85, state 138, "streams[indx].final_frame = 0"
+	ococ.pml:86, state 139, "streams[indx].last_sent_frame = 0"
+	ococ.pml:87, state 140, "streams[indx].last_rcvd_frame = 0"
+	ococ.pml:88, state 141, "streams[indx].request = 5"
+	ococ.pml:90, state 144, "assert(0)"
+	ococ.pml:81, state 150, "(((indx>=0)&&(indx<5)))"
+	ococ.pml:81, state 150, "else"
+	ococ.pml:90, state 179, "assert(0)"
+	ococ.pml:84, state 209, "streams[i].server_state = 0"
+	ococ.pml:85, state 210, "streams[i].final_frame = 0"
+	ococ.pml:86, state 211, "streams[i].last_sent_frame = 0"
+	ococ.pml:87, state 212, "streams[i].last_rcvd_frame = 0"
+	ococ.pml:88, state 213, "streams[i].request = 5"
+	ococ.pml:90, state 216, "assert(0)"
+	ococ.pml:81, state 222, "(((i>=0)&&(i<5)))"
+	ococ.pml:81, state 222, "else"
+	(20 of 257 states)
+unreached in proctype Server
+	ococ.pml:269, state 32, "goaway_sent = 1"
+	ococ.pml:268, state 33, "server!GOAWAY,0,15,0,0"
+	ococ.pml:90, state 74, "assert(0)"
+	ococ.pml:90, state 120, "assert(0)"
+	(4 of 140 states)
+unreached in proctype main
+	(0 of 3 states)
+
+pan: elapsed time 0.78 seconds
+pan: rate 492434.62 states/second
+warning: using -k1 as minimal usable value
+
+(Spin Version 6.4.3 -- 16 December 2014)
+	+ Partial Order Reduction
+	+ Process Scheduling Permutation
+	+ Reverse Transition Ordering
+
+Bit statespace search for:
+	never claim         	+ (:np_:)
+	assertion violations	+ (if within scope of claim)
+	non-progress cycles 	+ (fairness disabled)
+	invalid end states	- (disabled by never claim)
+
+State-vector 444 byte, depth reached 17254, errors: 0
+   537691 states, stored (802482 visited)
+   929620 states, matched
+  1732102 transitions (= visited+matched)
+   182297 atomic steps
+
+hash factor: 2.61333 (best if > 100.)
+
+bits set per state: 1 (-k1)
+
+Stats on memory usage (in Megabytes):
+  242.033	equivalent memory usage for states (stored*(State-vector + overhead))
+    0.250	memory used for hash array (-w21)
+    3.815	memory used for bit stack
+   30.518	memory used for DFS stack (-m500000)
+    3.852	other (proc and chan stacks)
+   38.586	total actual memory usage
+
+
+unreached in proctype Client
+	ococ.pml:84, state 22, "streams[indx].server_state = 0"
+	ococ.pml:85, state 23, "streams[indx].final_frame = 0"
+	ococ.pml:86, state 24, "streams[indx].last_sent_frame = 0"
+	ococ.pml:87, state 25, "streams[indx].last_rcvd_frame = 0"
+	ococ.pml:88, state 26, "streams[indx].request = 5"
+	ococ.pml:90, state 29, "assert(0)"
+	ococ.pml:81, state 35, "(((indx>=0)&&(indx<5)))"
+	ococ.pml:81, state 35, "else"
+	ococ.pml:121, state 37, "(1)"
+	ococ.pml:117, state 38, "((streams[indx].server_state==6))"
+	ococ.pml:117, state 38, "else"
+	ococ.pml:115, state 40, "streams[indx].client_state = 6"
+	ococ.pml:113, state 42, "assert((streams[indx].id==sid))"
+	ococ.pml:72, state 68, "sid = 0"
+	ococ.pml:90, state 84, "assert(0)"
+	ococ.pml:90, state 103, "assert(0)"
+	ococ.pml:202, state 118, "assert(0)"
+	ococ.pml:84, state 137, "streams[indx].server_state = 0"
+	ococ.pml:85, state 138, "streams[indx].final_frame = 0"
+	ococ.pml:86, state 139, "streams[indx].last_sent_frame = 0"
+	ococ.pml:87, state 140, "streams[indx].last_rcvd_frame = 0"
+	ococ.pml:88, state 141, "streams[indx].request = 5"
+	ococ.pml:90, state 144, "assert(0)"
+	ococ.pml:81, state 150, "(((indx>=0)&&(indx<5)))"
+	ococ.pml:81, state 150, "else"
+	ococ.pml:90, state 179, "assert(0)"
+	ococ.pml:84, state 209, "streams[i].server_state = 0"
+	ococ.pml:85, state 210, "streams[i].final_frame = 0"
+	ococ.pml:86, state 211, "streams[i].last_sent_frame = 0"
+	ococ.pml:87, state 212, "streams[i].last_rcvd_frame = 0"
+	ococ.pml:88, state 213, "streams[i].request = 5"
+	ococ.pml:90, state 216, "assert(0)"
+	ococ.pml:81, state 222, "(((i>=0)&&(i<5)))"
+	ococ.pml:81, state 222, "else"
+	ococ.pml:244, state 234, "i = (i+1)"
+	(31 of 257 states)
+unreached in proctype Server
+	ococ.pml:90, state 74, "assert(0)"
+	ococ.pml:98, state 107, "assert((streams[indx].id==sid))"
+	ococ.pml:84, state 113, "streams[indx].server_state = 0"
+	ococ.pml:85, state 114, "streams[indx].final_frame = 0"
+	ococ.pml:86, state 115, "streams[indx].last_sent_frame = 0"
+	ococ.pml:87, state 116, "streams[indx].last_rcvd_frame = 0"
+	ococ.pml:88, state 117, "streams[indx].request = 5"
+	ococ.pml:90, state 120, "assert(0)"
+	ococ.pml:81, state 126, "(((indx>=0)&&(indx<5)))"
+	ococ.pml:81, state 126, "else"
+	ococ.pml:106, state 128, "(1)"
+	ococ.pml:102, state 129, "((streams[indx].client_state==6))"
+	ococ.pml:102, state 129, "else"
+	ococ.pml:100, state 131, "streams[indx].server_state = 6"
+	ococ.pml:97, state 132, "assert(((indx>=0)&&(indx<5)))"
+	ococ.pml:351, state 133, "streams[indx].server_state = 3"
+	(14 of 140 states)
+unreached in proctype main
+	(0 of 3 states)
+
+pan: elapsed time 1.64 seconds
+pan: rate 489318.29 states/second
+Depth=   12757 States=    1e+06 Transitions= 2.15e+06 Memory=    37.860	t=     1.97 R=   5e+05
+
+(Spin Version 6.4.3 -- 16 December 2014)
+	+ Partial Order Reduction
+	+ Process Scheduling Permutation
+
+Bit statespace search for:
+	never claim         	+ (:np_:)
+	assertion violations	+ (if within scope of claim)
+	non-progress cycles 	+ (fairness disabled)
+	invalid end states	- (disabled by never claim)
+
+State-vector 444 byte, depth reached 13378, errors: 0
+  1035610 states, stored (1.5528e+06 visited)
+  1824954 states, matched
+  3377759 transitions (= visited+matched)
+   261057 atomic steps
+
+hash factor: 2.70111 (best if > 100.)
+
+bits set per state: 1 (-k1)
+
+Stats on memory usage (in Megabytes):
+  466.164	equivalent memory usage for states (stored*(State-vector + overhead))
+    0.500	memory used for hash array (-w22)
+    3.815	memory used for bit stack
+   30.518	memory used for DFS stack (-m500000)
+    2.976	other (proc and chan stacks)
+   37.957	total actual memory usage
+
+
+unreached in proctype Client
+	ococ.pml:90, state 29, "assert(0)"
+	ococ.pml:72, state 68, "sid = 0"
+	ococ.pml:90, state 84, "assert(0)"
+	ococ.pml:90, state 103, "assert(0)"
+	ococ.pml:202, state 118, "assert(0)"
+	ococ.pml:84, state 137, "streams[indx].server_state = 0"
+	ococ.pml:85, state 138, "streams[indx].final_frame = 0"
+	ococ.pml:86, state 139, "streams[indx].last_sent_frame = 0"
+	ococ.pml:87, state 140, "streams[indx].last_rcvd_frame = 0"
+	ococ.pml:88, state 141, "streams[indx].request = 5"
+	ococ.pml:90, state 144, "assert(0)"
+	ococ.pml:81, state 150, "(((indx>=0)&&(indx<5)))"
+	ococ.pml:81, state 150, "else"
+	ococ.pml:90, state 179, "assert(0)"
+	ococ.pml:84, state 209, "streams[i].server_state = 0"
+	ococ.pml:85, state 210, "streams[i].final_frame = 0"
+	ococ.pml:86, state 211, "streams[i].last_sent_frame = 0"
+	ococ.pml:87, state 212, "streams[i].last_rcvd_frame = 0"
+	ococ.pml:88, state 213, "streams[i].request = 5"
+	ococ.pml:90, state 216, "assert(0)"
+	ococ.pml:81, state 222, "(((i>=0)&&(i<5)))"
+	ococ.pml:81, state 222, "else"
+	(20 of 257 states)
+unreached in proctype Server
+	ococ.pml:90, state 74, "assert(0)"
+	ococ.pml:90, state 120, "assert(0)"
+	(2 of 140 states)
+unreached in proctype main
+	(0 of 3 states)
+
+pan: elapsed time 3.12 seconds
+pan: rate 497693.91 states/second
+Depth=   68584 States=    1e+06 Transitions= 2.01e+06 Memory=    50.567	t=     1.94 R=   5e+05
+Depth=  109998 States=    2e+06 Transitions= 4.14e+06 Memory=    59.551	t=        4 R=   5e+05
+Depth=  134653 States=    3e+06 Transitions= 6.32e+06 Memory=    64.922	t=     6.14 R=   5e+05
+
+(Spin Version 6.4.3 -- 16 December 2014)
+	+ Partial Order Reduction
+	+ Process Scheduling Permutation
+	+ Reverse Transition Ordering
+
+Bit statespace search for:
+	never claim         	+ (:np_:)
+	assertion violations	+ (if within scope of claim)
+	non-progress cycles 	+ (fairness disabled)
+	invalid end states	- (disabled by never claim)
+
+State-vector 444 byte, depth reached 134653, errors: 0
+  2392189 states, stored (3.5736e+06 visited)
+  4089291 states, matched
+  7662891 transitions (= visited+matched)
+   584973 atomic steps
+
+hash factor: 2.34738 (best if > 100.)
+
+bits set per state: 2 (-k2)
+
+Stats on memory usage (in Megabytes):
+ 1076.806	equivalent memory usage for states (stored*(State-vector + overhead))
+    1.000	memory used for hash array (-w23)
+    3.815	memory used for bit stack
+   30.518	memory used for DFS stack (-m500000)
+   29.380	other (proc and chan stacks)
+   64.922	total actual memory usage
+
+
+unreached in proctype Client
+	ococ.pml:162, state 8, "assert((!(goaway_rcvd)||(sid<=goaway_stream_id)))"
+	ococ.pml:163, state 9, "assert(((indx>=0)&&(indx<5)))"
+	ococ.pml:165, state 11, "assert((streams[indx].id==sid))"
+	ococ.pml:166, state 12, "assert(((streams[indx].last_rcvd_frame+1)==frame))"
+	ococ.pml:169, state 13, "assert((((streams[indx].client_state==1)||(streams[indx].client_state==3))||(streams[indx].client_state==4)))"
+	ococ.pml:171, state 14, "streams[indx].last_rcvd_frame = frame"
+	ococ.pml:84, state 22, "streams[indx].server_state = 0"
+	ococ.pml:85, state 23, "streams[indx].final_frame = 0"
+	ococ.pml:86, state 24, "streams[indx].last_sent_frame = 0"
+	ococ.pml:87, state 25, "streams[indx].last_rcvd_frame = 0"
+	ococ.pml:88, state 26, "streams[indx].request = 5"
+	ococ.pml:90, state 29, "assert(0)"
+	ococ.pml:81, state 35, "(((indx>=0)&&(indx<5)))"
+	ococ.pml:81, state 35, "else"
+	ococ.pml:121, state 37, "(1)"
+	ococ.pml:117, state 38, "((streams[indx].server_state==6))"
+	ococ.pml:117, state 38, "else"
+	ococ.pml:115, state 40, "streams[indx].client_state = 6"
+	ococ.pml:113, state 42, "assert((streams[indx].id==sid))"
+	ococ.pml:161, state 47, "assert((sid>0))"
+	ococ.pml:72, state 68, "sid = 0"
+	ococ.pml:90, state 84, "assert(0)"
+	ococ.pml:90, state 103, "assert(0)"
+	ococ.pml:202, state 118, "assert(0)"
+	ococ.pml:84, state 137, "streams[indx].server_state = 0"
+	ococ.pml:85, state 138, "streams[indx].final_frame = 0"
+	ococ.pml:86, state 139, "streams[indx].last_sent_frame = 0"
+	ococ.pml:87, state 140, "streams[indx].last_rcvd_frame = 0"
+	ococ.pml:88, state 141, "streams[indx].request = 5"
+	ococ.pml:90, state 144, "assert(0)"
+	ococ.pml:81, state 150, "(((indx>=0)&&(indx<5)))"
+	ococ.pml:81, state 150, "else"
+	ococ.pml:90, state 179, "assert(0)"
+	ococ.pml:84, state 209, "streams[i].server_state = 0"
+	ococ.pml:85, state 210, "streams[i].final_frame = 0"
+	ococ.pml:86, state 211, "streams[i].last_sent_frame = 0"
+	ococ.pml:87, state 212, "streams[i].last_rcvd_frame = 0"
+	ococ.pml:88, state 213, "streams[i].request = 5"
+	ococ.pml:90, state 216, "assert(0)"
+	ococ.pml:81, state 222, "(((i>=0)&&(i<5)))"
+	ococ.pml:81, state 222, "else"
+	(37 of 257 states)
+unreached in proctype Server
+	ococ.pml:269, state 7, "goaway_sent = 1"
+	ococ.pml:268, state 8, "server!GOAWAY,0,15,0,0"
+	ococ.pml:294, state 19, "assert((streams[indx].server_state==0))"
+	ococ.pml:295, state 20, "streams[indx].last_sent_frame = 0"
+	ococ.pml:296, state 21, "streams[indx].final_frame = data_frames"
+	ococ.pml:297, state 22, "streams[indx].server_state = 4"
+	ococ.pml:298, state 23, "server_tasks!indx"
+	ococ.pml:128, state 24, "data_frames = 5"
+	ococ.pml:90, state 74, "assert(0)"
+	ococ.pml:340, state 95, "assert((streams[indx].server_state==4))"
+	ococ.pml:341, state 96, "frame = (streams[indx].last_sent_frame+1)"
+	ococ.pml:342, state 97, "sid = streams[indx].id"
+	ococ.pml:343, state 98, "data_frames = streams[indx].final_frame"
+	ococ.pml:344, state 99, "streams[indx].last_sent_frame = frame"
+	ococ.pml:345, state 100, "server!DATA,indx,sid,frame,data_frames"
+	ococ.pml:98, state 107, "assert((streams[indx].id==sid))"
+	ococ.pml:84, state 113, "streams[indx].server_state = 0"
+	ococ.pml:85, state 114, "streams[indx].final_frame = 0"
+	ococ.pml:86, state 115, "streams[indx].last_sent_frame = 0"
+	ococ.pml:87, state 116, "streams[indx].last_rcvd_frame = 0"
+	ococ.pml:88, state 117, "streams[indx].request = 5"
+	ococ.pml:90, state 120, "assert(0)"
+	ococ.pml:81, state 126, "(((indx>=0)&&(indx<5)))"
+	ococ.pml:81, state 126, "else"
+	ococ.pml:106, state 128, "(1)"
+	ococ.pml:102, state 129, "((streams[indx].client_state==6))"
+	ococ.pml:102, state 129, "else"
+	ococ.pml:100, state 131, "streams[indx].server_state = 6"
+	ococ.pml:97, state 132, "assert(((indx>=0)&&(indx<5)))"
+	ococ.pml:351, state 133, "streams[indx].server_state = 3"
+	ococ.pml:347, state 134, "((frame<data_frames))"
+	ococ.pml:347, state 134, "else"
+	ococ.pml:339, state 136, "assert((streams[indx].request==GET))"
+	(30 of 140 states)
+unreached in proctype main
+	(0 of 3 states)
+
+pan: elapsed time 7.48 seconds
+pan: rate 477754.01 states/second
+Depth=   54362 States=    1e+06 Transitions= 2.04e+06 Memory=    48.344	t=     2.01 R=   5e+05
+Depth=   77338 States=    2e+06 Transitions= 4.17e+06 Memory=    53.325	t=     4.16 R=   5e+05
+Depth=   77338 States=    3e+06 Transitions= 6.37e+06 Memory=    53.325	t=     6.48 R=   5e+05
+Depth=   77338 States=    4e+06 Transitions= 8.55e+06 Memory=    53.325	t=      9.4 R=   4e+05
+Depth=   77338 States=    5e+06 Transitions= 1.07e+07 Memory=    53.325	t=     11.6 R=   4e+05
+Depth=   77338 States=    6e+06 Transitions= 1.29e+07 Memory=    53.325	t=     13.8 R=   4e+05
+
+(Spin Version 6.4.3 -- 16 December 2014)
+	+ Partial Order Reduction
+	+ Process Scheduling Permutation
+
+Bit statespace search for:
+	never claim         	+ (:np_:)
+	assertion violations	+ (if within scope of claim)
+	non-progress cycles 	+ (fairness disabled)
+	invalid end states	- (disabled by never claim)
+
+State-vector 444 byte, depth reached 77338, errors: 0
+  4179952 states, stored (6.13005e+06 visited)
+  7095262 states, matched
+ 13225310 transitions (= visited+matched)
+   852112 atomic steps
+
+hash factor: 2.73688 (best if > 100.)
+
+bits set per state: 3 (-k3)
+
+Stats on memory usage (in Megabytes):
+ 1881.540	equivalent memory usage for states (stored*(State-vector + overhead))
+    2.000	memory used for hash array (-w24)
+    3.815	memory used for bit stack
+   30.518	memory used for DFS stack (-m500000)
+   16.801	other (proc and chan stacks)
+   53.325	total actual memory usage
+
+
+unreached in proctype Client
+	ococ.pml:90, state 29, "assert(0)"
+	ococ.pml:72, state 68, "sid = 0"
+	ococ.pml:90, state 84, "assert(0)"
+	ococ.pml:90, state 103, "assert(0)"
+	ococ.pml:202, state 118, "assert(0)"
+	ococ.pml:84, state 137, "streams[indx].server_state = 0"
+	ococ.pml:85, state 138, "streams[indx].final_frame = 0"
+	ococ.pml:86, state 139, "streams[indx].last_sent_frame = 0"
+	ococ.pml:87, state 140, "streams[indx].last_rcvd_frame = 0"
+	ococ.pml:88, state 141, "streams[indx].request = 5"
+	ococ.pml:90, state 144, "assert(0)"
+	ococ.pml:81, state 150, "(((indx>=0)&&(indx<5)))"
+	ococ.pml:81, state 150, "else"
+	ococ.pml:90, state 179, "assert(0)"
+	ococ.pml:84, state 209, "streams[i].server_state = 0"
+	ococ.pml:85, state 210, "streams[i].final_frame = 0"
+	ococ.pml:86, state 211, "streams[i].last_sent_frame = 0"
+	ococ.pml:87, state 212, "streams[i].last_rcvd_frame = 0"
+	ococ.pml:88, state 213, "streams[i].request = 5"
+	ococ.pml:90, state 216, "assert(0)"
+	ococ.pml:81, state 222, "(((i>=0)&&(i<5)))"
+	ococ.pml:81, state 222, "else"
+	(20 of 257 states)
+unreached in proctype Server
+	ococ.pml:90, state 74, "assert(0)"
+	ococ.pml:90, state 120, "assert(0)"
+	(2 of 140 states)
+unreached in proctype main
+	(0 of 3 states)
+
+pan: elapsed time 14.1 seconds
+pan: rate 434139.38 states/second
+warning: using -k1 as minimal usable value
+Depth=   81220 States=    1e+06 Transitions= 1.98e+06 Memory=    56.301	t=     1.92 R=   5e+05
+Depth=  117903 States=    2e+06 Transitions= 4.09e+06 Memory=    64.211	t=     3.95 R=   5e+05
+Depth=  169247 States=    3e+06 Transitions=  6.2e+06 Memory=    75.344	t=     5.99 R=   5e+05
+Depth=  216520 States=    4e+06 Transitions= 8.33e+06 Memory=    85.598	t=      8.1 R=   5e+05
+Depth=  263212 States=    5e+06 Transitions= 1.05e+07 Memory=    95.754	t=     10.2 R=   5e+05
+Depth=  306573 States=    6e+06 Transitions= 1.26e+07 Memory=   105.129	t=     12.3 R=   5e+05
+Depth=  353050 States=    7e+06 Transitions= 1.48e+07 Memory=   115.286	t=     14.5 R=   5e+05
+Depth=  391282 States=    8e+06 Transitions= 1.69e+07 Memory=   123.489	t=     16.7 R=   5e+05
+Depth=  391282 States=    9e+06 Transitions= 1.91e+07 Memory=   123.489	t=     18.9 R=   5e+05
+Depth=  391282 States=    1e+07 Transitions= 2.13e+07 Memory=   123.489	t=     21.2 R=   5e+05
+Depth=  391282 States=  1.1e+07 Transitions= 2.36e+07 Memory=   123.489	t=     23.5 R=   5e+05
+Depth=  391282 States=  1.2e+07 Transitions= 2.58e+07 Memory=   123.489	t=     25.8 R=   5e+05
+
+(Spin Version 6.4.3 -- 16 December 2014)
+	+ Partial Order Reduction
+	+ Process Scheduling Permutation
+	+ Reverse Transition Ordering
+
+Bit statespace search for:
+	never claim         	+ (:np_:)
+	assertion violations	+ (if within scope of claim)
+	non-progress cycles 	+ (fairness disabled)
+	invalid end states	- (disabled by never claim)
+
+State-vector 444 byte, depth reached 391282, errors: 0
+  8500812 states, stored (1.27369e+07 visited)
+ 14827723 states, matched
+ 27564621 transitions (= visited+matched)
+  2168739 atomic steps
+
+hash factor: 2.63443 (best if > 100.)
+
+bits set per state: 1 (-k1)
+
+Stats on memory usage (in Megabytes):
+ 3826.507	equivalent memory usage for states (stored*(State-vector + overhead))
+    4.000	memory used for hash array (-w25)
+    3.815	memory used for bit stack
+   30.518	memory used for DFS stack (-m500000)
+   84.824	other (proc and chan stacks)
+  123.489	total actual memory usage
+
+
+unreached in proctype Client
+	ococ.pml:162, state 8, "assert((!(goaway_rcvd)||(sid<=goaway_stream_id)))"
+	ococ.pml:163, state 9, "assert(((indx>=0)&&(indx<5)))"
+	ococ.pml:165, state 11, "assert((streams[indx].id==sid))"
+	ococ.pml:166, state 12, "assert(((streams[indx].last_rcvd_frame+1)==frame))"
+	ococ.pml:169, state 13, "assert((((streams[indx].client_state==1)||(streams[indx].client_state==3))||(streams[indx].client_state==4)))"
+	ococ.pml:171, state 14, "streams[indx].last_rcvd_frame = frame"
+	ococ.pml:84, state 22, "streams[indx].server_state = 0"
+	ococ.pml:85, state 23, "streams[indx].final_frame = 0"
+	ococ.pml:86, state 24, "streams[indx].last_sent_frame = 0"
+	ococ.pml:87, state 25, "streams[indx].last_rcvd_frame = 0"
+	ococ.pml:88, state 26, "streams[indx].request = 5"
+	ococ.pml:90, state 29, "assert(0)"
+	ococ.pml:81, state 35, "(((indx>=0)&&(indx<5)))"
+	ococ.pml:81, state 35, "else"
+	ococ.pml:121, state 37, "(1)"
+	ococ.pml:117, state 38, "((streams[indx].server_state==6))"
+	ococ.pml:117, state 38, "else"
+	ococ.pml:115, state 40, "streams[indx].client_state = 6"
+	ococ.pml:113, state 42, "assert((streams[indx].id==sid))"
+	ococ.pml:161, state 47, "assert((sid>0))"
+	ococ.pml:72, state 68, "sid = 0"
+	ococ.pml:90, state 84, "assert(0)"
+	ococ.pml:90, state 103, "assert(0)"
+	ococ.pml:202, state 118, "assert(0)"
+	ococ.pml:84, state 137, "streams[indx].server_state = 0"
+	ococ.pml:85, state 138, "streams[indx].final_frame = 0"
+	ococ.pml:86, state 139, "streams[indx].last_sent_frame = 0"
+	ococ.pml:87, state 140, "streams[indx].last_rcvd_frame = 0"
+	ococ.pml:88, state 141, "streams[indx].request = 5"
+	ococ.pml:90, state 144, "assert(0)"
+	ococ.pml:81, state 150, "(((indx>=0)&&(indx<5)))"
+	ococ.pml:81, state 150, "else"
+	ococ.pml:90, state 179, "assert(0)"
+	ococ.pml:84, state 209, "streams[i].server_state = 0"
+	ococ.pml:85, state 210, "streams[i].final_frame = 0"
+	ococ.pml:86, state 211, "streams[i].last_sent_frame = 0"
+	ococ.pml:87, state 212, "streams[i].last_rcvd_frame = 0"
+	ococ.pml:88, state 213, "streams[i].request = 5"
+	ococ.pml:90, state 216, "assert(0)"
+	ococ.pml:81, state 222, "(((i>=0)&&(i<5)))"
+	ococ.pml:81, state 222, "else"
+	(37 of 257 states)
+unreached in proctype Server
+	ococ.pml:269, state 7, "goaway_sent = 1"
+	ococ.pml:268, state 8, "server!GOAWAY,0,15,0,0"
+	ococ.pml:294, state 19, "assert((streams[indx].server_state==0))"
+	ococ.pml:295, state 20, "streams[indx].last_sent_frame = 0"
+	ococ.pml:296, state 21, "streams[indx].final_frame = data_frames"
+	ococ.pml:297, state 22, "streams[indx].server_state = 4"
+	ococ.pml:298, state 23, "server_tasks!indx"
+	ococ.pml:128, state 24, "data_frames = 5"
+	ococ.pml:90, state 74, "assert(0)"
+	ococ.pml:340, state 95, "assert((streams[indx].server_state==4))"
+	ococ.pml:341, state 96, "frame = (streams[indx].last_sent_frame+1)"
+	ococ.pml:342, state 97, "sid = streams[indx].id"
+	ococ.pml:343, state 98, "data_frames = streams[indx].final_frame"
+	ococ.pml:344, state 99, "streams[indx].last_sent_frame = frame"
+	ococ.pml:345, state 100, "server!DATA,indx,sid,frame,data_frames"
+	ococ.pml:98, state 107, "assert((streams[indx].id==sid))"
+	ococ.pml:84, state 113, "streams[indx].server_state = 0"
+	ococ.pml:85, state 114, "streams[indx].final_frame = 0"
+	ococ.pml:86, state 115, "streams[indx].last_sent_frame = 0"
+	ococ.pml:87, state 116, "streams[indx].last_rcvd_frame = 0"
+	ococ.pml:88, state 117, "streams[indx].request = 5"
+	ococ.pml:90, state 120, "assert(0)"
+	ococ.pml:81, state 126, "(((indx>=0)&&(indx<5)))"
+	ococ.pml:81, state 126, "else"
+	ococ.pml:106, state 128, "(1)"
+	ococ.pml:102, state 129, "((streams[indx].client_state==6))"
+	ococ.pml:102, state 129, "else"
+	ococ.pml:100, state 131, "streams[indx].server_state = 6"
+	ococ.pml:97, state 132, "assert(((indx>=0)&&(indx<5)))"
+	ococ.pml:351, state 133, "streams[indx].server_state = 3"
+	ococ.pml:347, state 134, "((frame<data_frames))"
+	ococ.pml:347, state 134, "else"
+	ococ.pml:339, state 136, "assert((streams[indx].request==GET))"
+	(30 of 140 states)
+unreached in proctype main
+	(0 of 3 states)
+
+pan: elapsed time 27.5 seconds
+pan: rate 462823.33 states/second
+Depth=   10388 States=    1e+06 Transitions= 2.16e+06 Memory=    44.872	t=     2.19 R=   5e+05
+Depth=   10388 States=    2e+06 Transitions= 4.36e+06 Memory=    44.872	t=     4.37 R=   5e+05
+Depth=   10388 States=    3e+06 Transitions=  6.6e+06 Memory=    44.872	t=     6.56 R=   5e+05
+Depth=   10388 States=    4e+06 Transitions= 8.76e+06 Memory=    44.872	t=     8.68 R=   5e+05
+Depth=   15833 States=    5e+06 Transitions= 1.09e+07 Memory=    46.043	t=     10.8 R=   5e+05
+Depth=   25236 States=    6e+06 Transitions= 1.31e+07 Memory=    48.094	t=     12.8 R=   5e+05
+Depth=   37335 States=    7e+06 Transitions= 1.53e+07 Memory=    50.731	t=     14.9 R=   5e+05
+Depth=   51165 States=    8e+06 Transitions= 1.75e+07 Memory=    53.856	t=       17 R=   5e+05
+Depth=   66528 States=    9e+06 Transitions= 1.97e+07 Memory=    57.176	t=     19.2 R=   5e+05
+Depth=   84050 States=    1e+07 Transitions= 2.19e+07 Memory=    61.082	t=     21.4 R=   5e+05
+Depth=  103098 States=  1.1e+07 Transitions=  2.4e+07 Memory=    65.184	t=     23.6 R=   5e+05
+Depth=  124696 States=  1.2e+07 Transitions= 2.62e+07 Memory=    69.969	t=     25.7 R=   5e+05
+Depth=  147145 States=  1.3e+07 Transitions= 2.84e+07 Memory=    74.852	t=     27.9 R=   5e+05
+Depth=  169168 States=  1.4e+07 Transitions= 3.06e+07 Memory=    79.735	t=       30 R=   5e+05
+Depth=  190738 States=  1.5e+07 Transitions= 3.28e+07 Memory=    84.520	t=     32.2 R=   5e+05
+Depth=  207936 States=  1.6e+07 Transitions= 3.49e+07 Memory=    88.231	t=     34.4 R=   5e+05
+Depth=  207936 States=  1.7e+07 Transitions= 3.71e+07 Memory=    88.231	t=     36.6 R=   5e+05
+Depth=  207936 States=  1.8e+07 Transitions= 3.93e+07 Memory=    88.231	t=     38.8 R=   5e+05
+Depth=  207936 States=  1.9e+07 Transitions= 4.15e+07 Memory=    88.231	t=       41 R=   5e+05
+Depth=  207936 States=    2e+07 Transitions= 4.37e+07 Memory=    88.231	t=     43.3 R=   5e+05
+Depth=  207936 States=  2.1e+07 Transitions=  4.6e+07 Memory=    88.231	t=     45.5 R=   5e+05
+Depth=  207936 States=  2.2e+07 Transitions= 4.83e+07 Memory=    88.231	t=     47.8 R=   5e+05
+Depth=  207936 States=  2.3e+07 Transitions= 5.06e+07 Memory=    88.231	t=     50.1 R=   5e+05
+
+(Spin Version 6.4.3 -- 16 December 2014)
+	+ Partial Order Reduction
+	+ Process Scheduling Permutation
+
+Bit statespace search for:
+	never claim         	+ (:np_:)
+	assertion violations	+ (if within scope of claim)
+	non-progress cycles 	+ (fairness disabled)
+	invalid end states	- (disabled by never claim)
+
+State-vector 444 byte, depth reached 207936, errors: 0
+ 15457494 states, stored (2.30529e+07 visited)
+ 27633901 states, matched
+ 50686792 transitions (= visited+matched)
+  3954901 atomic steps
+
+hash factor: 2.91108 (best if > 100.)
+
+bits set per state: 1 (-k1)
+
+Stats on memory usage (in Megabytes):
+ 6957.948	equivalent memory usage for states (stored*(State-vector + overhead))
+    8.000	memory used for hash array (-w26)
+    3.815	memory used for bit stack
+   30.518	memory used for DFS stack (-m500000)
+   45.641	other (proc and chan stacks)
+   88.231	total actual memory usage
+
+
+unreached in proctype Client
+	ococ.pml:90, state 29, "assert(0)"
+	ococ.pml:72, state 68, "sid = 0"
+	ococ.pml:90, state 84, "assert(0)"
+	ococ.pml:90, state 103, "assert(0)"
+	ococ.pml:202, state 118, "assert(0)"
+	ococ.pml:84, state 137, "streams[indx].server_state = 0"
+	ococ.pml:85, state 138, "streams[indx].final_frame = 0"
+	ococ.pml:86, state 139, "streams[indx].last_sent_frame = 0"
+	ococ.pml:87, state 140, "streams[indx].last_rcvd_frame = 0"
+	ococ.pml:88, state 141, "streams[indx].request = 5"
+	ococ.pml:90, state 144, "assert(0)"
+	ococ.pml:81, state 150, "(((indx>=0)&&(indx<5)))"
+	ococ.pml:81, state 150, "else"
+	ococ.pml:90, state 179, "assert(0)"
+	ococ.pml:84, state 209, "streams[i].server_state = 0"
+	ococ.pml:85, state 210, "streams[i].final_frame = 0"
+	ococ.pml:86, state 211, "streams[i].last_sent_frame = 0"
+	ococ.pml:87, state 212, "streams[i].last_rcvd_frame = 0"
+	ococ.pml:88, state 213, "streams[i].request = 5"
+	ococ.pml:90, state 216, "assert(0)"
+	ococ.pml:81, state 222, "(((i>=0)&&(i<5)))"
+	ococ.pml:81, state 222, "else"
+	(20 of 257 states)
+unreached in proctype Server
+	ococ.pml:90, state 74, "assert(0)"
+	ococ.pml:90, state 120, "assert(0)"
+	(2 of 140 states)
+unreached in proctype main
+	(0 of 3 states)
+
+pan: elapsed time 50.2 seconds
+pan: rate 459312.43 states/second
+error: max search depth too small
+Depth=  499999 States=    1e+06 Transitions= 1.76e+06 Memory=   160.782	t=     1.81 R=   6e+05
+Depth=  499999 States=    2e+06 Transitions= 3.99e+06 Memory=   160.782	t=      3.9 R=   5e+05
+Depth=  499999 States=    3e+06 Transitions= 6.21e+06 Memory=   160.782	t=     5.97 R=   5e+05
+Depth=  499999 States=    4e+06 Transitions= 8.37e+06 Memory=   160.782	t=     8.02 R=   5e+05
+Depth=  499999 States=    5e+06 Transitions= 1.07e+07 Memory=   160.782	t=     10.2 R=   5e+05
+Depth=  499999 States=    6e+06 Transitions= 1.28e+07 Memory=   160.782	t=     12.3 R=   5e+05
+Depth=  499999 States=    7e+06 Transitions= 1.52e+07 Memory=   160.782	t=     14.5 R=   5e+05
+Depth=  499999 States=    8e+06 Transitions= 1.74e+07 Memory=   160.782	t=     16.7 R=   5e+05
+Depth=  499999 States=    9e+06 Transitions= 1.96e+07 Memory=   160.782	t=     18.8 R=   5e+05
+Depth=  499999 States=    1e+07 Transitions= 2.18e+07 Memory=   160.782	t=     20.9 R=   5e+05
+Depth=  499999 States=  1.1e+07 Transitions= 2.38e+07 Memory=   160.782	t=     22.9 R=   5e+05
+Depth=  499999 States=  1.2e+07 Transitions=  2.6e+07 Memory=   160.782	t=     25.1 R=   5e+05
+Depth=  499999 States=  1.3e+07 Transitions= 2.85e+07 Memory=   160.782	t=     27.4 R=   5e+05
+Depth=  499999 States=  1.4e+07 Transitions= 3.08e+07 Memory=   160.782	t=     29.5 R=   5e+05
+Depth=  499999 States=  1.5e+07 Transitions=  3.3e+07 Memory=   160.782	t=     31.7 R=   5e+05
+Depth=  499999 States=  1.6e+07 Transitions= 3.52e+07 Memory=   160.782	t=     33.8 R=   5e+05
+Depth=  499999 States=  1.7e+07 Transitions= 3.75e+07 Memory=   160.782	t=       36 R=   5e+05
+Depth=  499999 States=  1.8e+07 Transitions= 3.97e+07 Memory=   160.782	t=     38.1 R=   5e+05
+Depth=  499999 States=  1.9e+07 Transitions= 4.18e+07 Memory=   160.782	t=     40.3 R=   5e+05
+Depth=  499999 States=    2e+07 Transitions=  4.4e+07 Memory=   160.782	t=     42.4 R=   5e+05
+Depth=  499999 States=  2.1e+07 Transitions= 4.63e+07 Memory=   160.782	t=     44.6 R=   5e+05
+Depth=  499999 States=  2.2e+07 Transitions= 4.85e+07 Memory=   160.782	t=     46.7 R=   5e+05
+Depth=  499999 States=  2.3e+07 Transitions= 5.07e+07 Memory=   160.782	t=     48.9 R=   5e+05
+Depth=  499999 States=  2.4e+07 Transitions= 5.29e+07 Memory=   160.782	t=       51 R=   5e+05
+Depth=  499999 States=  2.5e+07 Transitions= 5.52e+07 Memory=   160.782	t=     53.2 R=   5e+05
+Depth=  499999 States=  2.6e+07 Transitions= 5.74e+07 Memory=   160.782	t=     55.4 R=   5e+05
+Depth=  499999 States=  2.7e+07 Transitions= 5.96e+07 Memory=   160.782	t=     57.6 R=   5e+05
+Depth=  499999 States=  2.8e+07 Transitions= 6.19e+07 Memory=   160.782	t=     59.8 R=   5e+05
+Depth=  499999 States=  2.9e+07 Transitions= 6.41e+07 Memory=   160.782	t=       62 R=   5e+05
+Depth=  499999 States=    3e+07 Transitions= 6.64e+07 Memory=   160.782	t=     64.1 R=   5e+05
+Depth=  499999 States=  3.1e+07 Transitions= 6.86e+07 Memory=   160.782	t=     66.3 R=   5e+05
+Depth=  499999 States=  3.2e+07 Transitions= 7.08e+07 Memory=   160.782	t=     68.5 R=   5e+05
+Depth=  499999 States=  3.3e+07 Transitions=  7.3e+07 Memory=   160.782	t=     70.7 R=   5e+05
+Depth=  499999 States=  3.4e+07 Transitions= 7.52e+07 Memory=   160.782	t=     72.8 R=   5e+05
+Depth=  499999 States=  3.5e+07 Transitions= 7.74e+07 Memory=   160.782	t=       75 R=   5e+05
+Depth=  499999 States=  3.6e+07 Transitions= 7.96e+07 Memory=   160.782	t=     77.2 R=   5e+05
+Depth=  499999 States=  3.7e+07 Transitions= 8.18e+07 Memory=   160.782	t=     79.4 R=   5e+05
+Depth=  499999 States=  3.8e+07 Transitions=  8.4e+07 Memory=   160.782	t=     81.6 R=   5e+05
+Depth=  499999 States=  3.9e+07 Transitions= 8.62e+07 Memory=   160.782	t=     83.8 R=   5e+05
+Depth=  499999 States=    4e+07 Transitions= 8.84e+07 Memory=   160.782	t=       86 R=   5e+05
+Depth=  499999 States=  4.1e+07 Transitions= 9.06e+07 Memory=   160.782	t=     88.2 R=   5e+05
+Depth=  499999 States=  4.2e+07 Transitions= 9.27e+07 Memory=   160.782	t=     90.3 R=   5e+05
+Depth=  499999 States=  4.3e+07 Transitions= 9.49e+07 Memory=   160.782	t=     92.6 R=   5e+05
+Depth=  499999 States=  4.4e+07 Transitions= 9.71e+07 Memory=   160.782	t=     94.8 R=   5e+05
+Depth=  499999 States=  4.5e+07 Transitions= 9.93e+07 Memory=   160.782	t=       97 R=   5e+05
+Depth=  499999 States=  4.6e+07 Transitions= 1.01e+08 Memory=   160.782	t=     99.2 R=   5e+05
+Depth=  499999 States=  4.7e+07 Transitions= 1.04e+08 Memory=   160.782	t=      102 R=   5e+05
+Depth=  499999 States=  4.8e+07 Transitions= 1.06e+08 Memory=   160.782	t=      104 R=   5e+05
+Depth=  499999 States=  4.9e+07 Transitions= 1.08e+08 Memory=   160.782	t=      106 R=   5e+05
+Depth=  499999 States=    5e+07 Transitions=  1.1e+08 Memory=   160.782	t=      108 R=   5e+05
+Depth=  499999 States=  5.1e+07 Transitions= 1.12e+08 Memory=   160.782	t=      111 R=   5e+05
+Depth=  499999 States=  5.2e+07 Transitions= 1.14e+08 Memory=   160.782	t=      113 R=   5e+05
+Depth=  499999 States=  5.3e+07 Transitions= 1.16e+08 Memory=   160.782	t=      116 R=   5e+05
+Depth=  499999 States=  5.4e+07 Transitions= 1.19e+08 Memory=   160.782	t=      119 R=   5e+05
+
+(Spin Version 6.4.3 -- 16 December 2014)
+	+ Partial Order Reduction
+	+ Process Scheduling Permutation
+	+ Reverse Transition Ordering
+
+Bit statespace search for:
+	never claim         	+ (:np_:)
+	assertion violations	+ (if within scope of claim)
+	non-progress cycles 	+ (fairness disabled)
+	invalid end states	- (disabled by never claim)
+
+State-vector 444 byte, depth reached 499999, errors: 0
+ 36986412 states, stored (5.44256e+07 visited)
+ 65192972 states, matched
+1.1961859e+08 transitions (= visited+matched)
+  8265755 atomic steps
+
+hash factor: 2.46608 (best if > 100.)
+
+bits set per state: 2 (-k2)
+
+Stats on memory usage (in Megabytes):
+16648.852	equivalent memory usage for states (stored*(State-vector + overhead))
+   16.000	memory used for hash array (-w27)
+    3.815	memory used for bit stack
+   30.518	memory used for DFS stack (-m500000)
+  109.898	other (proc and chan stacks)
+  160.782	total actual memory usage
+
+
+unreached in proctype Client
+	ococ.pml:84, state 22, "streams[indx].server_state = 0"
+	ococ.pml:85, state 23, "streams[indx].final_frame = 0"
+	ococ.pml:86, state 24, "streams[indx].last_sent_frame = 0"
+	ococ.pml:87, state 25, "streams[indx].last_rcvd_frame = 0"
+	ococ.pml:88, state 26, "streams[indx].request = 5"
+	ococ.pml:90, state 29, "assert(0)"
+	ococ.pml:81, state 35, "(((indx>=0)&&(indx<5)))"
+	ococ.pml:81, state 35, "else"
+	ococ.pml:121, state 37, "(1)"
+	ococ.pml:117, state 38, "((streams[indx].server_state==6))"
+	ococ.pml:117, state 38, "else"
+	ococ.pml:115, state 40, "streams[indx].client_state = 6"
+	ococ.pml:113, state 42, "assert((streams[indx].id==sid))"
+	ococ.pml:72, state 68, "sid = 0"
+	ococ.pml:90, state 84, "assert(0)"
+	ococ.pml:90, state 103, "assert(0)"
+	ococ.pml:202, state 118, "assert(0)"
+	ococ.pml:84, state 137, "streams[indx].server_state = 0"
+	ococ.pml:85, state 138, "streams[indx].final_frame = 0"
+	ococ.pml:86, state 139, "streams[indx].last_sent_frame = 0"
+	ococ.pml:87, state 140, "streams[indx].last_rcvd_frame = 0"
+	ococ.pml:88, state 141, "streams[indx].request = 5"
+	ococ.pml:90, state 144, "assert(0)"
+	ococ.pml:81, state 150, "(((indx>=0)&&(indx<5)))"
+	ococ.pml:81, state 150, "else"
+	ococ.pml:90, state 179, "assert(0)"
+	ococ.pml:84, state 209, "streams[i].server_state = 0"
+	ococ.pml:85, state 210, "streams[i].final_frame = 0"
+	ococ.pml:86, state 211, "streams[i].last_sent_frame = 0"
+	ococ.pml:87, state 212, "streams[i].last_rcvd_frame = 0"
+	ococ.pml:88, state 213, "streams[i].request = 5"
+	ococ.pml:90, state 216, "assert(0)"
+	ococ.pml:81, state 222, "(((i>=0)&&(i<5)))"
+	ococ.pml:81, state 222, "else"
+	(30 of 257 states)
+unreached in proctype Server
+	ococ.pml:90, state 74, "assert(0)"
+	ococ.pml:98, state 107, "assert((streams[indx].id==sid))"
+	ococ.pml:84, state 113, "streams[indx].server_state = 0"
+	ococ.pml:85, state 114, "streams[indx].final_frame = 0"
+	ococ.pml:86, state 115, "streams[indx].last_sent_frame = 0"
+	ococ.pml:87, state 116, "streams[indx].last_rcvd_frame = 0"
+	ococ.pml:88, state 117, "streams[indx].request = 5"
+	ococ.pml:90, state 120, "assert(0)"
+	ococ.pml:81, state 126, "(((indx>=0)&&(indx<5)))"
+	ococ.pml:81, state 126, "else"
+	ococ.pml:106, state 128, "(1)"
+	ococ.pml:102, state 129, "((streams[indx].client_state==6))"
+	ococ.pml:102, state 129, "else"
+	ococ.pml:100, state 131, "streams[indx].server_state = 6"
+	ococ.pml:97, state 132, "assert(((indx>=0)&&(indx<5)))"
+	ococ.pml:351, state 133, "streams[indx].server_state = 3"
+	(14 of 140 states)
+unreached in proctype main
+	(0 of 3 states)
+
+pan: elapsed time 121 seconds
+pan: rate 448427.26 states/second
+Depth=   54118 States=    1e+06 Transitions= 2.04e+06 Memory=    78.344	t=     2.03 R=   5e+05
+Depth=  106578 States=    2e+06 Transitions= 4.08e+06 Memory=    89.672	t=     4.07 R=   5e+05
+Depth=  159282 States=    3e+06 Transitions= 6.11e+06 Memory=   101.098	t=     6.12 R=   5e+05
+Depth=  211742 States=    4e+06 Transitions= 8.15e+06 Memory=   112.426	t=     8.19 R=   5e+05
+Depth=  264690 States=    5e+06 Transitions= 1.02e+07 Memory=   123.950	t=     10.3 R=   5e+05
+Depth=  290350 States=    6e+06 Transitions= 1.23e+07 Memory=   129.516	t=     12.5 R=   5e+05
+Depth=  290350 States=    7e+06 Transitions= 1.45e+07 Memory=   129.516	t=     15.3 R=   5e+05
+Depth=  290350 States=    8e+06 Transitions= 1.67e+07 Memory=   129.516	t=     19.4 R=   4e+05
+Depth=  290350 States=    9e+06 Transitions= 1.89e+07 Memory=   129.516	t=     24.8 R=   4e+05
+Depth=  290350 States=    1e+07 Transitions=  2.1e+07 Memory=   129.516	t=     31.7 R=   3e+05
+Depth=  290350 States=  1.1e+07 Transitions= 2.32e+07 Memory=   129.516	t=     39.7 R=   3e+05
+Depth=  290350 States=  1.2e+07 Transitions= 2.54e+07 Memory=   129.516	t=     49.5 R=   2e+05
+Depth=  290350 States=  1.3e+07 Transitions= 2.76e+07 Memory=   129.516	t=     60.6 R=   2e+05
+Depth=  290350 States=  1.4e+07 Transitions= 2.98e+07 Memory=   129.516	t=      105 R=   1e+05
+Depth=  290350 States=  1.5e+07 Transitions= 3.18e+07 Memory=   129.516	t=      299 R=   5e+04
+Depth=  290350 States=  1.6e+07 Transitions=  3.4e+07 Memory=   129.516	t=      380 R=   4e+04
+Depth=  290350 States=  1.7e+07 Transitions= 3.61e+07 Memory=   129.516	t=      502 R=   3e+04
+Depth=  290350 States=  1.8e+07 Transitions= 3.82e+07 Memory=   129.516	t=      620 R=   3e+04
+
+
+
+Depth=  290350 States=  1.9e+07 Transitions= 4.03e+07 Memory=   129.516	t=      761 R=   2e+04
+
+Depth=  290350 States=    2e+07 Transitions= 4.24e+07 Memory=   129.516	t=      833 R=   2e+04
+
+
+Depth=  290350 States=  2.1e+07 Transitions= 4.46e+07 Memory=   129.516	t=      914 R=   2e+04
+Depth=  290350 States=  2.2e+07 Transitions= 4.67e+07 Memory=   129.516	t=    1e+03 R=   2e+04
+Depth=  290350 States=  2.3e+07 Transitions= 4.88e+07 Memory=   129.516	t= 1.12e+03 R=   2e+04
+Depth=  290350 States=  2.4e+07 Transitions= 5.09e+07 Memory=   129.516	t= 1.22e+03 R=   2e+04
+Depth=  290350 States=  2.5e+07 Transitions= 5.31e+07 Memory=   129.516	t=  1.3e+03 R=   2e+04
+Depth=  290350 States=  2.6e+07 Transitions= 5.52e+07 Memory=   129.516	t= 1.37e+03 R=   2e+04
+Depth=  290350 States=  2.7e+07 Transitions= 5.73e+07 Memory=   129.516	t= 1.44e+03 R=   2e+04
+
+
+Depth=  290350 States=  2.8e+07 Transitions= 5.95e+07 Memory=   129.516	t= 1.51e+03 R=   2e+04
+Depth=  290350 States=  2.9e+07 Transitions= 6.16e+07 Memory=   129.516	t= 1.59e+03 R=   2e+04
+Depth=  290350 States=    3e+07 Transitions= 6.37e+07 Memory=   129.516	t= 1.66e+03 R=   2e+04
+
+
+Depth=  290350 States=  3.1e+07 Transitions= 6.59e+07 Memory=   129.516	t= 1.72e+03 R=   2e+04
+Depth=  290350 States=  3.2e+07 Transitions=  6.8e+07 Memory=   129.516	t= 1.77e+03 R=   2e+04
+Depth=  290350 States=  3.3e+07 Transitions= 7.01e+07 Memory=   129.516	t= 1.83e+03 R=   2e+04
+Depth=  290350 States=  3.4e+07 Transitions= 7.23e+07 Memory=   129.516	t= 1.87e+03 R=   2e+04
+Depth=  290350 States=  3.5e+07 Transitions= 7.44e+07 Memory=   129.516	t= 1.92e+03 R=   2e+04
+Depth=  290350 States=  3.6e+07 Transitions= 7.66e+07 Memory=   129.516	t= 1.97e+03 R=   2e+04
+Depth=  290350 States=  3.7e+07 Transitions= 7.87e+07 Memory=   129.516	t= 2.02e+03 R=   2e+04
+Depth=  290350 States=  3.8e+07 Transitions= 8.09e+07 Memory=   129.516	t= 2.05e+03 R=   2e+04
+Depth=  290350 States=  3.9e+07 Transitions=  8.3e+07 Memory=   129.516	t= 2.09e+03 R=   2e+04
+Depth=  290350 States=    4e+07 Transitions= 8.52e+07 Memory=   129.516	t= 2.12e+03 R=   2e+04
+Depth=  290350 States=  4.1e+07 Transitions= 8.73e+07 Memory=   129.516	t= 2.15e+03 R=   2e+04
+Depth=  290350 States=  4.2e+07 Transitions= 8.95e+07 Memory=   129.516	t= 2.17e+03 R=   2e+04
+Depth=  290350 States=  4.3e+07 Transitions= 9.16e+07 Memory=   129.516	t=  2.2e+03 R=   2e+04
+Depth=  290350 States=  4.4e+07 Transitions= 9.38e+07 Memory=   129.516	t= 2.22e+03 R=   2e+04
+Depth=  290350 States=  4.5e+07 Transitions=  9.6e+07 Memory=   129.516	t= 2.23e+03 R=   2e+04
+Depth=  290350 States=  4.6e+07 Transitions= 9.81e+07 Memory=   129.516	t= 2.25e+03 R=   2e+04
+Depth=  290350 States=  4.7e+07 Transitions=    1e+08 Memory=   129.516	t= 2.27e+03 R=   2e+04
+Depth=  290350 States=  4.8e+07 Transitions= 1.02e+08 Memory=   129.516	t= 2.28e+03 R=   2e+04
+Depth=  290350 States=  4.9e+07 Transitions= 1.05e+08 Memory=   129.516	t= 2.29e+03 R=   2e+04
+Depth=  290350 States=    5e+07 Transitions= 1.07e+08 Memory=   129.516	t=  2.3e+03 R=   2e+04
+Depth=  290350 States=  5.1e+07 Transitions= 1.09e+08 Memory=   129.516	t= 2.31e+03 R=   2e+04
+Depth=  290350 States=  5.2e+07 Transitions= 1.11e+08 Memory=   129.516	t= 2.32e+03 R=   2e+04
+Depth=  290350 States=  5.3e+07 Transitions= 1.13e+08 Memory=   129.516	t= 2.32e+03 R=   2e+04
+Depth=  290350 States=  5.4e+07 Transitions= 1.15e+08 Memory=   129.516	t= 2.33e+03 R=   2e+04
+Depth=  290350 States=  5.5e+07 Transitions= 1.18e+08 Memory=   129.516	t= 2.33e+03 R=   2e+04
+Depth=  290350 States=  5.6e+07 Transitions=  1.2e+08 Memory=   129.516	t= 2.34e+03 R=   2e+04
+Depth=  290350 States=  5.7e+07 Transitions= 1.22e+08 Memory=   129.516	t= 2.34e+03 R=   2e+04
+Depth=  290350 States=  5.8e+07 Transitions= 1.24e+08 Memory=   129.516	t= 2.35e+03 R=   2e+04
+Depth=  290350 States=  5.9e+07 Transitions= 1.26e+08 Memory=   129.516	t= 2.35e+03 R=   3e+04
+Depth=  290350 States=    6e+07 Transitions= 1.28e+08 Memory=   129.516	t= 2.35e+03 R=   3e+04
+Depth=  290350 States=  6.1e+07 Transitions= 1.31e+08 Memory=   129.516	t= 2.36e+03 R=   3e+04
+Depth=  290350 States=  6.2e+07 Transitions= 1.33e+08 Memory=   129.516	t= 2.36e+03 R=   3e+04
+Depth=  290350 States=  6.3e+07 Transitions= 1.35e+08 Memory=   129.516	t= 2.36e+03 R=   3e+04
+Depth=  290350 States=  6.4e+07 Transitions= 1.37e+08 Memory=   129.516	t= 2.36e+03 R=   3e+04
+Depth=  290350 States=  6.5e+07 Transitions= 1.39e+08 Memory=   129.516	t= 2.37e+03 R=   3e+04
+Depth=  293991 States=  6.6e+07 Transitions= 1.41e+08 Memory=   130.395	t= 2.37e+03 R=   3e+04
+Depth=  308848 States=  6.7e+07 Transitions= 1.44e+08 Memory=   133.618	t= 2.37e+03 R=   3e+04
+Depth=  324428 States=  6.8e+07 Transitions= 1.46e+08 Memory=   137.036	t= 2.37e+03 R=   3e+04
+Depth=  342702 States=  6.9e+07 Transitions= 1.48e+08 Memory=   140.942	t= 2.37e+03 R=   3e+04
+Depth=  361442 States=    7e+07 Transitions=  1.5e+08 Memory=   145.043	t= 2.38e+03 R=   3e+04
+Depth=  379714 States=  7.1e+07 Transitions= 1.52e+08 Memory=   149.047	t= 2.38e+03 R=   3e+04
+Depth=  398022 States=  7.2e+07 Transitions= 1.54e+08 Memory=   152.954	t= 2.38e+03 R=   3e+04
+Depth=  410993 States=  7.3e+07 Transitions= 1.56e+08 Memory=   155.786	t= 2.38e+03 R=   3e+04
+Depth=  430133 States=  7.4e+07 Transitions= 1.59e+08 Memory=   159.985	t= 2.39e+03 R=   3e+04
+Depth=  449834 States=  7.5e+07 Transitions= 1.61e+08 Memory=   164.184	t= 2.39e+03 R=   3e+04
+Depth=  467115 States=  7.6e+07 Transitions= 1.63e+08 Memory=   167.993	t= 2.39e+03 R=   3e+04
+Depth=  485634 States=  7.7e+07 Transitions= 1.65e+08 Memory=   171.997	t= 2.39e+03 R=   3e+04
+error: max search depth too small
+Depth=  499999 States=  7.8e+07 Transitions= 1.67e+08 Memory=   175.122	t= 2.39e+03 R=   3e+04
+Depth=  499999 States=  7.9e+07 Transitions= 1.69e+08 Memory=   175.122	t=  2.4e+03 R=   3e+04
+Depth=  499999 States=    8e+07 Transitions= 1.72e+08 Memory=   175.122	t=  2.4e+03 R=   3e+04
+Depth=  499999 States=  8.1e+07 Transitions= 1.74e+08 Memory=   175.122	t=  2.4e+03 R=   3e+04
+Depth=  499999 States=  8.2e+07 Transitions= 1.76e+08 Memory=   175.122	t=  2.4e+03 R=   3e+04
+Depth=  499999 States=  8.3e+07 Transitions= 1.78e+08 Memory=   175.122	t= 2.41e+03 R=   3e+04
+Depth=  499999 States=  8.4e+07 Transitions=  1.8e+08 Memory=   175.122	t= 2.41e+03 R=   3e+04
+Depth=  499999 States=  8.5e+07 Transitions= 1.83e+08 Memory=   175.122	t= 2.41e+03 R=   4e+04
+Depth=  499999 States=  8.6e+07 Transitions= 1.85e+08 Memory=   175.122	t= 2.41e+03 R=   4e+04
+Depth=  499999 States=  8.7e+07 Transitions= 1.87e+08 Memory=   175.122	t= 2.42e+03 R=   4e+04
+Depth=  499999 States=  8.8e+07 Transitions= 1.89e+08 Memory=   175.122	t= 2.42e+03 R=   4e+04
+Depth=  499999 States=  8.9e+07 Transitions= 1.91e+08 Memory=   175.122	t= 2.42e+03 R=   4e+04
+Depth=  499999 States=    9e+07 Transitions= 1.94e+08 Memory=   175.122	t= 2.42e+03 R=   4e+04
+Depth=  499999 States=  9.1e+07 Transitions= 1.96e+08 Memory=   175.122	t= 2.42e+03 R=   4e+04
+Depth=  499999 States=  9.2e+07 Transitions= 1.98e+08 Memory=   175.122	t= 2.43e+03 R=   4e+04
+Depth=  499999 States=  9.3e+07 Transitions= 2.01e+08 Memory=   175.122	t= 2.43e+03 R=   4e+04
+Depth=  499999 States=  9.4e+07 Transitions= 2.03e+08 Memory=   175.122	t= 2.43e+03 R=   4e+04
+Depth=  499999 States=  9.5e+07 Transitions= 2.05e+08 Memory=   175.122	t= 2.43e+03 R=   4e+04
+
+(Spin Version 6.4.3 -- 16 December 2014)
+	+ Partial Order Reduction
+	+ Process Scheduling Permutation
+
+Bit statespace search for:
+	never claim         	+ (:np_:)
+	assertion violations	+ (if within scope of claim)
+	non-progress cycles 	+ (fairness disabled)
+	invalid end states	- (disabled by never claim)
+
+State-vector 444 byte, depth reached 499999, errors: 0
+ 65097889 states, stored (9.52528e+07 visited)
+1.1041686e+08 states, matched
+2.0566962e+08 transitions (= visited+matched)
+ 14260008 atomic steps
+
+hash factor: 2.81814 (best if > 100.)
+
+bits set per state: 3 (-k3)
+
+Stats on memory usage (in Megabytes):
+29302.791	equivalent memory usage for states (stored*(State-vector + overhead))
+   32.000	memory used for hash array (-w28)
+    3.815	memory used for bit stack
+   30.518	memory used for DFS stack (-m500000)
+  108.334	other (proc and chan stacks)
+  175.122	total actual memory usage
+
+
+unreached in proctype Client
+	ococ.pml:90, state 29, "assert(0)"
+	ococ.pml:72, state 68, "sid = 0"
+	ococ.pml:90, state 84, "assert(0)"
+	ococ.pml:90, state 103, "assert(0)"
+	ococ.pml:202, state 118, "assert(0)"
+	ococ.pml:84, state 137, "streams[indx].server_state = 0"
+	ococ.pml:85, state 138, "streams[indx].final_frame = 0"
+	ococ.pml:86, state 139, "streams[indx].last_sent_frame = 0"
+	ococ.pml:87, state 140, "streams[indx].last_rcvd_frame = 0"
+	ococ.pml:88, state 141, "streams[indx].request = 5"
+	ococ.pml:90, state 144, "assert(0)"
+	ococ.pml:81, state 150, "(((indx>=0)&&(indx<5)))"
+	ococ.pml:81, state 150, "else"
+	ococ.pml:90, state 179, "assert(0)"
+	ococ.pml:84, state 209, "streams[i].server_state = 0"
+	ococ.pml:85, state 210, "streams[i].final_frame = 0"
+	ococ.pml:86, state 211, "streams[i].last_sent_frame = 0"
+	ococ.pml:87, state 212, "streams[i].last_rcvd_frame = 0"
+	ococ.pml:88, state 213, "streams[i].request = 5"
+	ococ.pml:90, state 216, "assert(0)"
+	ococ.pml:81, state 222, "(((i>=0)&&(i<5)))"
+	ococ.pml:81, state 222, "else"
+	(20 of 257 states)
+unreached in proctype Server
+	ococ.pml:90, state 74, "assert(0)"
+	ococ.pml:90, state 120, "assert(0)"
+	(2 of 140 states)
+unreached in proctype main
+	(0 of 3 states)
+
+pan: elapsed time 2.43e+03 seconds
+pan: rate 39133.766 states/second
+Depth=   54118 States=    1e+06 Transitions= 2.04e+06 Memory=    78.344	t=     2.01 R=   5e+05
+Depth=  106578 States=    2e+06 Transitions= 4.08e+06 Memory=    89.672	t=     4.04 R=   5e+05
+Depth=  159282 States=    3e+06 Transitions= 6.11e+06 Memory=   101.098	t=     6.09 R=   5e+05
+Depth=  211742 States=    4e+06 Transitions= 8.15e+06 Memory=   112.426	t=     8.15 R=   5e+05
+Depth=  264690 States=    5e+06 Transitions= 1.02e+07 Memory=   123.950	t=     10.3 R=   5e+05
+Depth=  290350 States=    6e+06 Transitions= 1.23e+07 Memory=   129.516	t=     12.4 R=   5e+05
+Depth=  290350 States=    7e+06 Transitions= 1.45e+07 Memory=   129.516	t=     15.3 R=   5e+05
+Depth=  290350 States=    8e+06 Transitions= 1.67e+07 Memory=   129.516	t=     19.7 R=   4e+05
+Depth=  290350 States=    9e+06 Transitions= 1.89e+07 Memory=   129.516	t=     25.1 R=   4e+05
+Depth=  290350 States=    1e+07 Transitions=  2.1e+07 Memory=   129.516	t=     31.9 R=   3e+05
+Depth=  290350 States=  1.1e+07 Transitions= 2.32e+07 Memory=   129.516	t=     39.8 R=   3e+05
+Depth=  290350 States=  1.2e+07 Transitions= 2.54e+07 Memory=   129.516	t=     49.5 R=   2e+05
+Depth=  290350 States=  1.3e+07 Transitions= 2.76e+07 Memory=   129.516	t=     60.6 R=   2e+05
+Depth=  290350 States=  1.4e+07 Transitions= 2.98e+07 Memory=   129.516	t=      101 R=   1e+05
+
+
+
+Depth=  290350 States=  1.5e+07 Transitions= 3.18e+07 Memory=   129.516	t=      295 R=   5e+04
+Depth=  290350 States=  1.6e+07 Transitions=  3.4e+07 Memory=   129.516	t=      379 R=   4e+04
+Depth=  290350 States=  1.7e+07 Transitions= 3.61e+07 Memory=   129.516	t=      501 R=   3e+04
+Depth=  290350 States=  1.8e+07 Transitions= 3.82e+07 Memory=   129.516	t=      622 R=   3e+04
+Depth=  290350 States=  1.9e+07 Transitions= 4.03e+07 Memory=   129.516	t=      763 R=   2e+04
+
+
+
+
+Depth=  290350 States=    2e+07 Transitions= 4.24e+07 Memory=   129.516	t=      831 R=   2e+04
+Depth=  290350 States=  2.1e+07 Transitions= 4.46e+07 Memory=   129.516	t=      910 R=   2e+04
+Depth=  290350 States=  2.2e+07 Transitions= 4.67e+07 Memory=   129.516	t=      999 R=   2e+04
+Depth=  290350 States=  2.3e+07 Transitions= 4.88e+07 Memory=   129.516	t= 1.12e+03 R=   2e+04
+
+
+
+
+
+
+Depth=  290350 States=  2.4e+07 Transitions= 5.09e+07 Memory=   129.516	t= 1.22e+03 R=   2e+04
+
+
+Depth=  290350 States=  2.5e+07 Transitions= 5.31e+07 Memory=   129.516	t= 1.31e+03 R=   2e+04
+Depth=  290350 States=  2.6e+07 Transitions= 5.52e+07 Memory=   129.516	t= 1.38e+03 R=   2e+04
+Depth=  290350 States=  2.7e+07 Transitions= 5.73e+07 Memory=   129.516	t= 1.45e+03 R=   2e+04
+Depth=  290350 States=  2.8e+07 Transitions= 5.95e+07 Memory=   129.516	t= 1.51e+03 R=   2e+04
+Depth=  290350 States=  2.9e+07 Transitions= 6.16e+07 Memory=   129.516	t=  1.6e+03 R=   2e+04
+Depth=  290350 States=    3e+07 Transitions= 6.37e+07 Memory=   129.516	t= 1.67e+03 R=   2e+04
+Depth=  290350 States=  3.1e+07 Transitions= 6.59e+07 Memory=   129.516	t= 1.72e+03 R=   2e+04
+Depth=  290350 States=  3.2e+07 Transitions=  6.8e+07 Memory=   129.516	t= 1.78e+03 R=   2e+04
+Depth=  290350 States=  3.3e+07 Transitions= 7.01e+07 Memory=   129.516	t= 1.83e+03 R=   2e+04
+Depth=  290350 States=  3.4e+07 Transitions= 7.23e+07 Memory=   129.516	t= 1.88e+03 R=   2e+04
+Depth=  290350 States=  3.5e+07 Transitions= 7.44e+07 Memory=   129.516	t= 1.93e+03 R=   2e+04
+Depth=  290350 States=  3.6e+07 Transitions= 7.66e+07 Memory=   129.516	t= 1.97e+03 R=   2e+04
+Depth=  290350 States=  3.7e+07 Transitions= 7.87e+07 Memory=   129.516	t= 2.02e+03 R=   2e+04
+Depth=  290350 States=  3.8e+07 Transitions= 8.09e+07 Memory=   129.516	t= 2.05e+03 R=   2e+04
+Depth=  290350 States=  3.9e+07 Transitions=  8.3e+07 Memory=   129.516	t= 2.09e+03 R=   2e+04
+Depth=  290350 States=    4e+07 Transitions= 8.52e+07 Memory=   129.516	t= 2.12e+03 R=   2e+04
+Depth=  290350 States=  4.1e+07 Transitions= 8.73e+07 Memory=   129.516	t= 2.15e+03 R=   2e+04
+Depth=  290350 States=  4.2e+07 Transitions= 8.95e+07 Memory=   129.516	t= 2.17e+03 R=   2e+04
+Depth=  290350 States=  4.3e+07 Transitions= 9.16e+07 Memory=   129.516	t= 2.19e+03 R=   2e+04
+Depth=  290350 States=  4.4e+07 Transitions= 9.38e+07 Memory=   129.516	t= 2.22e+03 R=   2e+04
+Depth=  290350 States=  4.5e+07 Transitions=  9.6e+07 Memory=   129.516	t= 2.23e+03 R=   2e+04
+Depth=  290350 States=  4.6e+07 Transitions= 9.81e+07 Memory=   129.516	t= 2.25e+03 R=   2e+04
+Depth=  290350 States=  4.7e+07 Transitions=    1e+08 Memory=   129.516	t= 2.26e+03 R=   2e+04
+Depth=  290350 States=  4.8e+07 Transitions= 1.02e+08 Memory=   129.516	t= 2.28e+03 R=   2e+04
+Depth=  290350 States=  4.9e+07 Transitions= 1.05e+08 Memory=   129.516	t= 2.29e+03 R=   2e+04
+Depth=  290350 States=    5e+07 Transitions= 1.07e+08 Memory=   129.516	t=  2.3e+03 R=   2e+04
+Depth=  290350 States=  5.1e+07 Transitions= 1.09e+08 Memory=   129.516	t=  2.3e+03 R=   2e+04
+Depth=  290350 States=  5.2e+07 Transitions= 1.11e+08 Memory=   129.516	t= 2.31e+03 R=   2e+04
+Depth=  290350 States=  5.3e+07 Transitions= 1.13e+08 Memory=   129.516	t= 2.32e+03 R=   2e+04
+Depth=  290350 States=  5.4e+07 Transitions= 1.15e+08 Memory=   129.516	t= 2.32e+03 R=   2e+04
+Depth=  290350 States=  5.5e+07 Transitions= 1.18e+08 Memory=   129.516	t= 2.33e+03 R=   2e+04
+Depth=  290350 States=  5.6e+07 Transitions=  1.2e+08 Memory=   129.516	t= 2.33e+03 R=   2e+04
+Depth=  290350 States=  5.7e+07 Transitions= 1.22e+08 Memory=   129.516	t= 2.34e+03 R=   2e+04
+Depth=  290350 States=  5.8e+07 Transitions= 1.24e+08 Memory=   129.516	t= 2.34e+03 R=   2e+04
+Depth=  290350 States=  5.9e+07 Transitions= 1.26e+08 Memory=   129.516	t= 2.35e+03 R=   3e+04
+Depth=  290350 States=    6e+07 Transitions= 1.28e+08 Memory=   129.516	t= 2.35e+03 R=   3e+04
+Depth=  290350 States=  6.1e+07 Transitions= 1.31e+08 Memory=   129.516	t= 2.35e+03 R=   3e+04
+Depth=  290350 States=  6.2e+07 Transitions= 1.33e+08 Memory=   129.516	t= 2.35e+03 R=   3e+04
+Depth=  290350 States=  6.3e+07 Transitions= 1.35e+08 Memory=   129.516	t= 2.36e+03 R=   3e+04
+Depth=  290350 States=  6.4e+07 Transitions= 1.37e+08 Memory=   129.516	t= 2.36e+03 R=   3e+04
+Depth=  290350 States=  6.5e+07 Transitions= 1.39e+08 Memory=   129.516	t= 2.36e+03 R=   3e+04
+Depth=  293991 States=  6.6e+07 Transitions= 1.41e+08 Memory=   130.395	t= 2.36e+03 R=   3e+04
+Depth=  308848 States=  6.7e+07 Transitions= 1.44e+08 Memory=   133.618	t= 2.36e+03 R=   3e+04
+Depth=  324428 States=  6.8e+07 Transitions= 1.46e+08 Memory=   137.036	t= 2.37e+03 R=   3e+04
+Depth=  342702 States=  6.9e+07 Transitions= 1.48e+08 Memory=   140.942	t= 2.37e+03 R=   3e+04
+Depth=  361442 States=    7e+07 Transitions=  1.5e+08 Memory=   145.043	t= 2.37e+03 R=   3e+04
+Depth=  379714 States=  7.1e+07 Transitions= 1.52e+08 Memory=   149.047	t= 2.37e+03 R=   3e+04
+Depth=  398022 States=  7.2e+07 Transitions= 1.54e+08 Memory=   152.954	t= 2.38e+03 R=   3e+04
+Depth=  410993 States=  7.3e+07 Transitions= 1.56e+08 Memory=   155.786	t= 2.38e+03 R=   3e+04
+Depth=  430133 States=  7.4e+07 Transitions= 1.59e+08 Memory=   159.985	t= 2.38e+03 R=   3e+04
+Depth=  449834 States=  7.5e+07 Transitions= 1.61e+08 Memory=   164.184	t= 2.38e+03 R=   3e+04
+Depth=  467115 States=  7.6e+07 Transitions= 1.63e+08 Memory=   167.993	t= 2.38e+03 R=   3e+04
+Depth=  485634 States=  7.7e+07 Transitions= 1.65e+08 Memory=   171.997	t= 2.39e+03 R=   3e+04
+error: max search depth too small
+Depth=  499999 States=  7.8e+07 Transitions= 1.67e+08 Memory=   175.122	t= 2.39e+03 R=   3e+04
+Depth=  499999 States=  7.9e+07 Transitions= 1.69e+08 Memory=   175.122	t= 2.39e+03 R=   3e+04
+Depth=  499999 States=    8e+07 Transitions= 1.72e+08 Memory=   175.122	t= 2.39e+03 R=   3e+04
+Depth=  499999 States=  8.1e+07 Transitions= 1.74e+08 Memory=   175.122	t=  2.4e+03 R=   3e+04
+Depth=  499999 States=  8.2e+07 Transitions= 1.76e+08 Memory=   175.122	t=  2.4e+03 R=   3e+04
+Depth=  499999 States=  8.3e+07 Transitions= 1.78e+08 Memory=   175.122	t=  2.4e+03 R=   3e+04
+Depth=  499999 States=  8.4e+07 Transitions=  1.8e+08 Memory=   175.122	t=  2.4e+03 R=   3e+04
+Depth=  499999 States=  8.5e+07 Transitions= 1.83e+08 Memory=   175.122	t= 2.41e+03 R=   4e+04
+Depth=  499999 States=  8.6e+07 Transitions= 1.85e+08 Memory=   175.122	t= 2.41e+03 R=   4e+04
+Depth=  499999 States=  8.7e+07 Transitions= 1.87e+08 Memory=   175.122	t= 2.41e+03 R=   4e+04
+Depth=  499999 States=  8.8e+07 Transitions= 1.89e+08 Memory=   175.122	t= 2.41e+03 R=   4e+04
+Depth=  499999 States=  8.9e+07 Transitions= 1.91e+08 Memory=   175.122	t= 2.41e+03 R=   4e+04
+Depth=  499999 States=    9e+07 Transitions= 1.94e+08 Memory=   175.122	t= 2.42e+03 R=   4e+04
+Depth=  499999 States=  9.1e+07 Transitions= 1.96e+08 Memory=   175.122	t= 2.42e+03 R=   4e+04
+Depth=  499999 States=  9.2e+07 Transitions= 1.98e+08 Memory=   175.122	t= 2.42e+03 R=   4e+04
+Depth=  499999 States=  9.3e+07 Transitions= 2.01e+08 Memory=   175.122	t= 2.42e+03 R=   4e+04
+Depth=  499999 States=  9.4e+07 Transitions= 2.03e+08 Memory=   175.122	t= 2.43e+03 R=   4e+04
+Depth=  499999 States=  9.5e+07 Transitions= 2.05e+08 Memory=   175.122	t= 2.43e+03 R=   4e+04
+
+(Spin Version 6.4.3 -- 16 December 2014)
+	+ Partial Order Reduction
+	+ Process Scheduling Permutation
+
+Bit statespace search for:
+	never claim         	+ (:np_:)
+	assertion violations	+ (if within scope of claim)
+	non-progress cycles 	+ (fairness disabled)
+	invalid end states	- (disabled by never claim)
+
+State-vector 444 byte, depth reached 499999, errors: 0
+ 65097889 states, stored (9.52528e+07 visited)
+1.1041686e+08 states, matched
+2.0566962e+08 transitions (= visited+matched)
+ 14260008 atomic steps
+
+hash factor: 2.81814 (best if > 100.)
+
+bits set per state: 3 (-k3)
+
+Stats on memory usage (in Megabytes):
+29302.791	equivalent memory usage for states (stored*(State-vector + overhead))
+   32.000	memory used for hash array (-w28)
+    3.815	memory used for bit stack
+   30.518	memory used for DFS stack (-m500000)
+  108.334	other (proc and chan stacks)
+  175.122	total actual memory usage
+
+
+unreached in proctype Client
+	ococ.pml:90, state 29, "assert(0)"
+	ococ.pml:72, state 68, "sid = 0"
+	ococ.pml:90, state 84, "assert(0)"
+	ococ.pml:90, state 103, "assert(0)"
+	ococ.pml:202, state 118, "assert(0)"
+	ococ.pml:84, state 137, "streams[indx].server_state = 0"
+	ococ.pml:85, state 138, "streams[indx].final_frame = 0"
+	ococ.pml:86, state 139, "streams[indx].last_sent_frame = 0"
+	ococ.pml:87, state 140, "streams[indx].last_rcvd_frame = 0"
+	ococ.pml:88, state 141, "streams[indx].request = 5"
+	ococ.pml:90, state 144, "assert(0)"
+	ococ.pml:81, state 150, "(((indx>=0)&&(indx<5)))"
+	ococ.pml:81, state 150, "else"
+	ococ.pml:90, state 179, "assert(0)"
+	ococ.pml:84, state 209, "streams[i].server_state = 0"
+	ococ.pml:85, state 210, "streams[i].final_frame = 0"
+	ococ.pml:86, state 211, "streams[i].last_sent_frame = 0"
+	ococ.pml:87, state 212, "streams[i].last_rcvd_frame = 0"
+	ococ.pml:88, state 213, "streams[i].request = 5"
+	ococ.pml:90, state 216, "assert(0)"
+	ococ.pml:81, state 222, "(((i>=0)&&(i<5)))"
+	ococ.pml:81, state 222, "else"
+	(20 of 257 states)
+unreached in proctype Server
+	ococ.pml:90, state 74, "assert(0)"
+	ococ.pml:90, state 120, "assert(0)"
+	(2 of 140 states)
+unreached in proctype main
+	(0 of 3 states)
+
+pan: elapsed time 2.43e+03 seconds
+pan: rate  39214.32 states/second
+
+
