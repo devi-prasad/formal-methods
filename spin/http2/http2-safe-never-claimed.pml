@@ -29,20 +29,16 @@ typedef Stream {
     mtype request;
 };
 
-Stream cstreams[MAX_CSTREAMS];
-Stream sstreams[MAX_CSTREAMS];
-
-chan server  = [1] of {mtype, byte, int , byte, byte};
-
 #define CLIENT_CHAN_CAP ((MAX_CSTREAMS * MAX_DATA_FRAMES) + MAX_CSTREAMS)
 chan client  = [CLIENT_CHAN_CAP] of {mtype, byte, int , byte, byte};
+chan server  = [1] of {mtype, byte, int , byte, byte};
 
-local unsigned active_streams: STREAM_ID_BITS;
-local unsigned last_sid: STREAM_ID_BITS;
-local unsigned goaway_sid: STREAM_ID_BITS;
-local bit goaway_rcvd;
-local bit goaway_sent;
-local bit bask;
+unsigned active_streams: STREAM_ID_BITS;
+unsigned last_sid: STREAM_ID_BITS;
+unsigned goaway_sid: STREAM_ID_BITS;
+bit goaway_rcvd;
+bit goaway_sent;
+bit bask;
 
 inline system_state_reset()
 {
@@ -215,6 +211,8 @@ proctype Client()
     unsigned sid: STREAM_ID_BITS;
     unsigned cur: DATA_FRAME_BITS;
     unsigned final: DATA_FRAME_BITS;
+
+    Stream cstreams[MAX_CSTREAMS];
     chan client_tasks = [MAX_CSTREAMS] of { byte }
 
     xr server;
@@ -267,7 +265,6 @@ inline server_stream_reset(i)
 
 inline serve_http_get(i, sid, n)
 {
-    assert(cstreams[i].state == STATE_HALF_CLOSED_LOCAL);
     assert(!goaway_sent || sid <= CLIENT_GOAWAY_STREAM_ID)
     generate_data_frames(n)
     server_stream_init(i, sid, GET)
@@ -323,6 +320,8 @@ proctype Server()
     unsigned sid: STREAM_ID_BITS;
     unsigned cur: DATA_FRAME_BITS;
     unsigned final: DATA_FRAME_BITS;
+
+    Stream sstreams[MAX_CSTREAMS];
     chan server_tasks = [MAX_CSTREAMS] of { byte }
 
     xs server;
@@ -350,9 +349,6 @@ progress_server:
 
 active proctype main()
 {
-    byte indx;
-    byte stream;
-
     system_state_reset()
 
     run Client();
