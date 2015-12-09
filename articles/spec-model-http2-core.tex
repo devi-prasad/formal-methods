@@ -1,0 +1,150 @@
+\documentclass[10pt]{article}
+\usepackage{mathptmx}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{bcprules}
+\renewcommand{\rmdefault}{ptm}
+\usepackage[T1]{fontenc}
+
+\begin{document}
+\title{Pragmatic Formal Methods - An Exercise in Specifying and Modeling HTTP/2 Core}
+\author{
+  M.\, Devi Prasad\\
+  School of Information Sciences, Manipal University.\vspace*{6pt}\\
+  devi.prasad@manipal.edu
+ }
+\date{}
+\maketitle
+
+\begin{abstract}
+HTTP/2 is the modern successor of the venerable HTTP-1.1 protocol. In the last decade HTTP 1.1 served as the basis for delivering Web services across businesses. In this article, we develop a more formal specification of the HTTP/2 protocol. We also build a model and verify it using the SPIN model checker. We discuss some of the insights provided by the model and the very process of building the model. We employ lightweight techniques for the specification of the protocol and discuss its benefits over the informal narratives in the W3C document.
+\end{abstract}
+
+\section{Streams, Dependencies and their Priorities}
+A HTTP/2 stream represents the state of single HTTP transaction between two endpoints. A Web browser and a Web server are classical examples of client and server endpoints, respectively. In HTTP/2 a stream is uniquely identified by a positive number, its \emph{stream id}, which are drawn from a finite set: $\{id \,| \,id \in \{1 \ldots 2^{31}-1\} \,\}$.  The protocol allows only odd numbered ids for the client-side streams, and even-numbered ids on the server.  
+
+We introduce the following basic mathematical objects and notation to represent additional abstractions required for the specification purposes:
+
+ We use the following set to define HTTP/2 stream states:
+\[
+\Phi \; = \; \{ \mathtt{idle}, \, \mathtt{open}, \, \mathtt{closed}, \, \mathtt{half\_closed\_local}, \, \mathtt{half\_closed\_remote}, \, \mathtt{error}\}
+\]
+The HTTP/2 peers engage in an orderly exchange of frames. Each frame type has a well-defined meaning and purpose. The behavior of client and server endpoints can be easily captured as an automaton. We will employ StateCharts for specifying the behavior of streams as simple state machines. 
+
+In the following table we introduce additional definitions of a few important data domains. HTTP/2 stream ids and stream weights are drawn from finite sets. As a result, a handful of other essential derived definitions too use finite domains.
+
+\[
+\begin{array}{rllll}
+i, j, a, b &\in &\Delta & \subseteq \{ 1 \ldots 2^{31}-1 \} & \mathrm{set\ of \ stream \ ids}\\
+x, y, z &\in&\Lambda & \subseteq \Delta \, \cup \{ 0 \} & \mathrm{parent \ stream \ ids}\\
+p, s, t & \in &\Sigma &   &\mathrm{all \ streams \ in \ the \ system}\\
+\Pi^0, \Pi^n, \Pi_{s}, \Pi_{t}&\subseteq&2^{\Sigma}&&\mathrm{set \ of \ dependent \ streams }\\
+\phi_{p}, \phi_{s}, \phi_{t} &\in & \Phi &  &\mathrm{stream \ states}\\
+\omega_{p}, \omega_{s}, \omega_{t} &\in &\Omega &  \subseteq \{1 \ldots 256\} &\mathrm{stream \ weight}\\
+\end{array}
+\]
+
+For the purposes of this section, we model a HTTP/2 stream with a 4-tuple:
+\[
+    \Sigma \subset (\Delta \times \Lambda \times \Phi \times \Omega)
+\]
+The first component of this 4-tuple represents the unique stream id. The second component is the stream id of the parent stream, when the stream in question is a dependent stream. This component will be zero in the case of an independent stream. The third component represents the current state of the stream. The last component records the weight currently assigned to the stream.
+
+In due course, we will be required to access particular components of the stream structure presented above. We assume the existence of a handful of helper functions. For simplicity, each function name matches the symbol used to represent the domain of corresponding stream component. Thus, we assume the existence of functions named $\Delta$, $\Lambda$, $\Phi$, and $\Omega$ that extract the stream id, parent id, current state, and the weight, respectively from a given stream structure. For completeness, we provide the trivial definition of these four functions here:
+
+\[
+\begin{array}{llll}
+    \Delta(s \in \Sigma) &=& a & \mathbf{if} \;\; s = (a, x, \phi_{s}, \omega_{s})
+    \vspace*{4pt}\\
+    \Lambda(s \in \Sigma) &=& x & \mathbf{if} \;\; s = (a, x, \phi_{s}, \omega_{s})
+    \vspace*{4pt}\\
+    \Phi(s \in \Sigma) &=& \phi_{s} & \mathbf{if} \;\; s = (a, x, \phi_{s}, \omega_{s})
+    \vspace*{4pt}\\
+    \Omega(s \in \Sigma) &=& \omega_{s}  & \mathbf{if} \;\; s = (a, x, \phi_{s}, \omega_{s})
+    \vspace*{4pt}\\
+\end{array}
+\]
+
+A stream \emph{t} is directly-dependent (or immediately-dependent) on stream \emph{s}, or equivalently, stream \emph{s} is the parent of stream \emph{t} if the parent id of \emph{t} is same as the stream id of \emph{s}. The set of streams directly-dependent on a stream \emph{s} is defined by the following expression: 
+\[
+    \Pi^0(s \in \Sigma) = \{ t \in \Sigma \; | \; \Lambda(t) = \Delta(s)  \}
+\]
+
+Transitive stream dependencies are inductively calculated. Streams at level \emph{n} are obviously dependent on parents at level \emph{n-1}.
+\[
+    \Pi^n(p \in \Sigma) = \{ t \in \Sigma \; | \; \forall s \in \Pi^{n-1}(p). \ \Lambda(t) = \Delta(s)  \}
+\]
+
+The set of all dependent streams -- $\Pi$, that is, directly-dependent as well as transitively-dependent, is defined so:
+\[
+     \Pi(p \in \Sigma) = \bigcup_{0 \leq n \leq |\Sigma|}\Pi^n(p)
+\]
+
+In some cases we need to obtain the set of ids of streams directly-dependent on a stream \emph{s}:
+\[
+    \delta(s \in \Sigma) = \{ a \,|\, t \in \Pi^0(s). \ a = \Delta(t) \}
+\]
+
+In other cases, we need to map stream ids to corresponding streams:
+\[
+    \pi(A \subseteq \Delta) = \{ t \,|\, t \in \Sigma. \ \forall a \in A. \ a = \Delta(t) \}
+\]
+
+%%%
+%%% Set Parent command
+%%% 
+\noindent {\textsc{set-dependency}}(s, p)\\
+\[
+\begin{array}{ll}
+\mathbf{pre}:&\\
+  s \in \Sigma & p \in \Sigma\\
+  s \neq p & s = (i, x, \phi_s, \omega_s)\\
+  s \notin \Pi(p)  & p \notin \Pi(s)\\
+  \Pi_s \Leftarrow \Pi(s) & \Pi_p \Leftarrow \Pi(p)\\
+\end{array}
+\]
+\[
+\begin{array}{l}
+\mathbf{command}:\\
+  s \Leftarrow (i, \fbox{$\Delta(p)$}, \phi_{s}, \omega_{s})\\
+\end{array}
+\]
+\[
+\begin{array}{l}
+\mathbf{post}:\\
+  s \in \Pi^0(p) \ \ \ \Pi_s = \Pi(s)\\
+  \Pi(p) = \{s\} \cup \Pi(s) \cup \Pi_p \\
+\end{array}
+\]
+
+%%%
+%%% Set Exclusive Parent command
+%%% 
+\noindent {\textsc{set-exclusive-dependency}}(s, p)\\
+\[
+\begin{array}{ll}
+\mathbf{pre}:\\
+   s \in \Sigma & p \in \Sigma\\
+   s \neq p & s = (i, x, \phi_s, \omega_s)\\
+   s \notin \Pi(p)  & p \notin \Pi(s)\\
+   \Pi^0_s \Leftarrow \Pi^0(s) & \delta^0_p \Leftarrow \delta(\Pi^0(p))
+\end{array}
+\]
+\[
+\begin{array}{l}
+   \mathbf{command}:\\
+   \forall t = (k, \Delta(p), \phi_t, \omega_t) \in \Pi^0(p).\ t \Leftarrow (k,\,\fbox{$\Delta(s)$},\,\phi_t,\, \omega_t)\\
+   s \Leftarrow (i, \fbox{$\Delta(p)$}, \phi_s, \omega_s))
+\end{array}
+\]
+\[
+\begin{array}{ll}
+\rule{0mm}{5mm}
+   \mathbf{post}:\\
+   \Pi^0(s) = \Pi^0_s \cup \pi(\delta^0_p)  & \Pi^0(p) = \{ s \}\\
+\end{array}
+\]
+
+
+\end{document}
