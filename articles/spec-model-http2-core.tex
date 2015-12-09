@@ -81,7 +81,7 @@ The set of all dependent streams -- $\Pi$, that is, directly-dependent as well a
      \Pi(p \in \Sigma) = \bigcup_{0 \leq n \leq |\Sigma|}\Pi^n(p)
 \]
 
-In some cases we need to obtain the set of ids of streams directly-dependent on a stream \emph{s}:
+In some cases we need to obtain the set of ids of streams that are directly-dependent on a specific stream \emph{s}:
 \[
     \delta(s \in \Sigma) = \{ a \,|\, t \in \Pi^0(s). \ a = \Delta(t) \}
 \]
@@ -92,9 +92,9 @@ In other cases, we need to map stream ids to corresponding streams:
 \]
 
 %%%
-%%% Set Parent command
+%%% Set Parent command - Basic
 %%% 
-\noindent {\textsc{set-dependency}}(s, p)\\
+\noindent {\textsc{set-basic-dependency}}(s, p)\\
 \[
 \begin{array}{ll}
 \mathbf{pre}:&\\
@@ -114,21 +114,52 @@ In other cases, we need to map stream ids to corresponding streams:
 \begin{array}{l}
 \mathbf{post}:\\
   s \in \Pi^0(p) \ \ \ \Pi_s = \Pi(s)\\
-  \Pi(p) = \{s\} \cup \Pi(s) \cup \Pi_p \\
+  \Pi(p) = \Pi_p \cup \Pi(s) \cup \{s\}\\
 \end{array}
 \]
 
 %%%
+%%% Set Parent Inverse command
+%%% 
+{\textsc{set-inverse-dependency}}(s, p)\\
+\[
+\begin{array}{lll}
+\mathbf{pre}:&\\
+  s \in \Sigma & p \in \Sigma &\\
+  s \neq p & s \notin \Pi(p) & s = (i, x, \phi_s, \omega_s)\\
+   & p \in \Pi(s) & p = (j, y, \phi_p, \omega_p)\\
+  \Pi_s \Leftarrow \Pi(s) & \Pi_p \Leftarrow \Pi(p) & \Pi_p \subset \Pi_s\\
+\end{array}
+\]
+\noindent\[
+\begin{array}{l}
+\mathbf{command}:\\
+  p \Leftarrow (j, \fbox{$\Lambda(s)$}, \phi_p, \omega_p)\\
+  s \Leftarrow (i, \fbox{$\Delta(p)$}, \phi_s, \omega_s)\\
+\end{array}
+\]
+\[
+\begin{array}{l}
+\mathbf{post}:\\
+  s \in \Pi^0(p)  \ \ \ \ \ \ p \notin \Pi(s)\\
+  ((\Pi_s - \Pi_p) - \{p\}) = \Pi(s)\\
+  \Pi(p) = \Pi_p \cup \Pi(s) \cup \{s\}\\
+\end{array}
+\]
+
+
+
+%%%
 %%% Set Exclusive Parent command
 %%% 
-\noindent {\textsc{set-exclusive-dependency}}(s, p)\\
+{\textsc{set-exclusive-dependency}}(s, p)\\
 \[
 \begin{array}{ll}
 \mathbf{pre}:\\
    s \in \Sigma & p \in \Sigma\\
    s \neq p & s = (i, x, \phi_s, \omega_s)\\
    s \notin \Pi(p)  & p \notin \Pi(s)\\
-   \Pi^0_s \Leftarrow \Pi^0(s) & \delta^0_p \Leftarrow \delta(\Pi^0(p))
+   \Pi^0_s \Leftarrow \Pi^0(s) & \delta^0_t \Leftarrow \delta(\Pi^0(p))
 \end{array}
 \]
 \[
@@ -142,9 +173,38 @@ In other cases, we need to map stream ids to corresponding streams:
 \begin{array}{ll}
 \rule{0mm}{5mm}
    \mathbf{post}:\\
-   \Pi^0(s) = \Pi^0_s \cup \pi(\delta^0_p)  & \Pi^0(p) = \{ s \}\\
+   \Pi^0(s) = \Pi^0_s \cup \pi(\delta^0_t)  & \Pi^0(p) = \{ s \}\\
 \end{array}
 \]
 
+
+%%%
+%%% Set Exclusive Parent command
+%%% 
+{\textsc{set-exclusive-inverse-dependency}}(s, p)\\
+\[
+\begin{array}{ll}
+\mathbf{pre}:\\
+   s \in \Sigma & p \in \Sigma\\
+   s \neq p & s = (i, x, \phi_s, \omega_s)\\
+   s \notin \Pi(p)  & p \in \Pi(s)\\
+   \Pi^0_s \Leftarrow \Pi^0(s) & \delta^0_t \Leftarrow \delta(\Pi^0(p))
+\end{array}
+\]
+\[
+\begin{array}{l}
+   \mathbf{command}:\\
+   \forall t = (k, \Delta(p), \phi_t, \omega_t) \in \Pi^0(p).\ t \Leftarrow (k,\,\fbox{$\Delta(s)$},\,\phi_t,\, \omega_t)\\
+   p \Leftarrow (j, \fbox{$\Lambda(s)$}, \phi_p, \omega_p)\\
+   s \Leftarrow (i, \fbox{$\Delta(p)$}, \phi_s, \omega_s)\\
+\end{array}
+\]
+\[
+\begin{array}{ll}
+   \mathbf{post}:\\
+   s \in \Pi^0(p)  & p \notin \Pi(s)\\
+   \Pi^0(s) = \Pi^0_s \cup \pi(\delta^0_t)  & \Pi^0(p) = \{ s \}\\
+\end{array}
+\]
 
 \end{document}
