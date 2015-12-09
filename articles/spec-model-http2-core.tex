@@ -1,11 +1,13 @@
 \documentclass[10pt]{article}
 \usepackage{mathptmx}
 \usepackage{amssymb}
-\usepackage{amsmath}
+\usepackage[fleqn]{amsmath}
 \usepackage{xcolor}
 \usepackage{bcprules}
 \renewcommand{\rmdefault}{ptm}
 \usepackage[T1]{fontenc}
+
+\mathindent=0.0pt
 
 \begin{document}
 \title{Pragmatic Formal Methods - An Exercise in Specifying and Modeling HTTP/2 Core}
@@ -178,33 +180,33 @@ In other cases, we need to map stream ids to corresponding streams:
 \]
 
 
+\def\dstart{\hbox to \hsize{\vrule depth 0pt\hrulefill\vrule depth 0pt}}
+
 %%%
 %%% Set Exclusive Parent command
 %%% 
-{\textsc{set-exclusive-inverse-dependency}}(s, p)\\
-\[
-\begin{array}{ll}
-\mathbf{pre}:\\
-   s \in \Sigma & p \in \Sigma\\
-   s \neq p & s = (i, x, \phi_s, \omega_s)\\
-   s \notin \Pi(p)  & p \in \Pi(s)\\
-   \Pi^0_s \Leftarrow \Pi^0(s) & \delta^0_t \Leftarrow \delta(\Pi^0(p))
-\end{array}
-\]
-\[
-\begin{array}{l}
-   \mathbf{command}:\\
-   \forall t = (k, \Delta(p), \phi_t, \omega_t) \in \Pi^0(p).\ t \Leftarrow (k,\,\fbox{$\Delta(s)$},\,\phi_t,\, \omega_t)\\
-   p \Leftarrow (j, \fbox{$\Lambda(s)$}, \phi_p, \omega_p)\\
-   s \Leftarrow (i, \fbox{$\Delta(p)$}, \phi_s, \omega_s)\\
-\end{array}
-\]
-\[
-\begin{array}{ll}
-   \mathbf{post}:\\
-   s \in \Pi^0(p)  & p \notin \Pi(s)\\
-   \Pi^0(s) = \Pi^0_s \cup \pi(\delta^0_t)  & \Pi^0(p) = \{ s \}\\
-\end{array}
-\]
+
+\rule{0mm}{6mm}
+{\textsc{set-exclusive-inverse-dependency}}(s, p)\vspace*{-4pt}\\
+\noindent\dstart\vspace*{-6pt}
+\begin{flalign}
+&{\mathbf{precondition:}}&\\
+   &s \in \Sigma  \andalso\andalso p \in \Sigma&\\
+   &s \neq p  \andalso\andalso s = (i, x, \phi_s, \omega_s)&\\
+   &s \notin \Pi(p)  \andalso\quad p \in \Pi(s)&\\
+   &\Pi^0_s \Leftarrow \Pi^0(s)  \andalso \delta^0_t \Leftarrow \delta(\Pi^0(p))&\\
+\rule{0mm}{2mm}
+&\dstart\vspace*{-6pt}&\nonumber\\
+&{\mathbf{command:}}&\\
+   &\forall (t = (k, \Delta(p), \phi_t, \omega_t)\,) \in \Pi^0(p). \ \,t \Leftarrow (k,\,\fbox{$\Delta(s)$},\,\phi_t,\, \omega_t)&\\
+   &p \Leftarrow (j, \fbox{$\Lambda(s)$}, \phi_p, \omega_p)&\\
+   &s \Leftarrow (i, \fbox{$\Delta(p)$}, \phi_s, \omega_s)&\\
+\rule{0mm}{2mm}
+&\dstart\vspace*{-6pt}&\nonumber\\
+&{\mathbf{postcondition:}}&\\
+   &s \in \Pi^0(p)  \andalso\quad p \notin \Pi(s) &\\
+   &\Pi^0(p) = \{ s \}  \andalso \Pi^0(s) = \Pi^0_s \cup \pi(\delta^0_t)&
+\end{flalign}
+%\]
 
 \end{document}
